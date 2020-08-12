@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--<!ELEMENT configuration (properties?, settings?, typeAliases?, typeHandlers?, objectFactory?, objectWrapperFactory?, reflectorFactory?, plugins?, environments?, databaseIdProvider?, mappers?)>-->
+<configuration>
+
+    <!-- mybatis  经常会设置的地方 -->
+    <!--  mybatis 自身的配置   包含 设置  插件等等  -->
+    <settings>
+        <!-- 指定日志输出形式 -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+
+    </settings>
+
+</configuration>

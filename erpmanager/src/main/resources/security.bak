@@ -1,0 +1,85 @@
+    <dependency>    <!--spring-security start-->
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>${spring.security.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>${spring.security.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>${spring.security.version}</version>
+    </dependency>
+
+    <dependency>    <!--SpringSecurity：页面端的权限控制-->
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-taglibs</artifactId>
+      <version>${spring.security.version}</version>
+    </dependency>
+
+    <dependency>    <!--SpringSecurity方法级的权限控制-->
+      <groupId>javax.annotation</groupId>
+      <artifactId>jsr250-api</artifactId>
+      <version>1.0</version>
+    </dependency>
+     <filter>
+            <filter-name>springSecurityFilterChain</filter-name>
+            <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        </filter>
+        <filter-mapping>
+            <filter-name>springSecurityFilterChain</filter-name>
+            <url-pattern>/*</url-pattern>
+        </filter-mapping>
+
+         <!--
+            1.403 404 500等错误代码都可以配置 如果是前后端分离的项目则推荐使用spring提供的配置类的方法
+            2.其它方式实现不了跳转404界面
+            -->
+            <error-page>
+                <error-code>403</error-code>
+                <location>/403.jsp</location>
+            </error-page>
+            <error-page>
+                <error-code>404</error-code>
+                <location>/404.jsp</location>
+            </error-page>
+
+            package com.erp.exception;
+
+            import org.springframework.security.access.AccessDeniedException;
+            import org.springframework.web.bind.annotation.ControllerAdvice;
+            import org.springframework.web.bind.annotation.ExceptionHandler;
+
+            //@ControllerAdvice
+            public class ControllerExceptionAdvice {
+                //只有出现AccessDeniedException异常才调转403.jsp页面
+                @ExceptionHandler(AccessDeniedException.class)
+                public String accessDeniedException() {
+                    return "forward:/403.jsp";
+                }
+
+                @ExceptionHandler(Exception.class)
+                public String runtimeException() {
+                    return "forward:/404.jsp";
+                }
+            }
+
+ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+ public class BCryptPasswordEncoderUtils {
+     private static BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
+     public static String encodePassword(String password){
+         return bCryptPasswordEncoder.encode(password);
+     }
+
+     public static void main(String[] args) {
+         String password="123";
+         String pwd = encodePassword(password);
+         //$2a$10$tJHudmJh6MRPdiL7mv0yfe0nZJbDHuhl7sSTnqNC4DauMik9ppi4K
+         //$2a$10$Ce8LB3jdYDZ2f6HB281zA.4eC7v6ziJdK8MMWg0Yu8ETMg5ToMpIe
+         System.out.print(pwd.length());
+     }
+ }
