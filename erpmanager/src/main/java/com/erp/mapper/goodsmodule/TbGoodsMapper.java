@@ -3,8 +3,10 @@ package com.erp.mapper.goodsmodule;
 import com.erp.domain.goodsmodule.TbGoods;
 import com.erp.domain.goodsmodule.TbGoodsExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 
 public interface TbGoodsMapper {
     int countByExample(TbGoodsExample example);

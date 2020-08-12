@@ -27,9 +27,13 @@
                         class="fa fa-angle-left pull-right"></i> </span> </a>
                 <ul class="treeview-menu" style="padding-left: 20px">
                     <li id="user-manager">
-                        <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i
-                                class="fa fa-circle-o"></i><span>商品管理</span> <span class="pull-right-container"><i
-                                class="fa fa-angle-left pull-right"></i> </span> </a>
+                        <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4">
+                            <i class="fa fa-circle-o"></i>
+                            <span>商品管理</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
                         <ul class="treeview-menu" style="padding-left: 20px">
                             <li id="">
                                 <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4">
@@ -74,15 +78,100 @@
             <%--商品与赠品结束--%>
             <%--销售管理开始--%>
             <li class="treeview"><a href="#"> <i class="fa fa-cube"></i>
-                <span>图书管理</span> <span class="pull-right-container"> <i
+                <span>B2C销售管理</span> <span class="pull-right-container"> <i
                         class="fa fa-angle-left pull-right"></i>
 				</span>
             </a>
                 <ul class="treeview-menu">
-                    <li id="system-setting"><a
-                            href="${pageContext.request.contextPath}/book/findAll.do">
-                        <i class="fa fa-circle-o"></i> 图书列表
-                    </a></li>
+                    <li id="sale-order">
+                        <a href="${pageContext.request.contextPath}/book/findAll.do">
+                            <i class="fa fa-circle-o"></i>
+                            <span>B2C销售订单管理</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+
+                        <ul class="treeview-menu" style="padding-left: 20px">
+                            <li id="">
+                                <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i
+                                        class="fa fa-circle-o"></i><span>B2C销售订单查询</span> </a>
+                            </li>
+                            <li id="">
+                                <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i
+                                        class="fa fa-circle-o"></i><span>B2C网店订单管理</span> </a>
+                            </li>
+                            <li id="">
+                                <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i
+                                        class="fa fa-circle-o"></i><span>B2C销售出库管理</span></a>
+                            </li>
+                            <li id="">
+                                <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i
+                                        class="fa fa-circle-o"></i><span>B2C销售出库单记录</span></a>
+                            </li>
+                            <li id="">
+                                <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i
+                                        class="fa fa-circle-o"></i><span>B2C销售退货管理</span></a>
+                            </li>
+                            <li id="">
+                                <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i
+                                        class="fa fa-circle-o"></i><span>B2C销售退货单记录</span></a>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <li id="sale-check">
+                        <a href="${pageContext.request.contextPath}/book/findAll.do">
+                            <i class="fa fa-circle-o"></i>
+                            <span>对账管理</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+
+                        <ul class="treeview-menu" style="padding-left: 20px">
+                            <li id="">
+                                <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i
+                                        class="fa fa-circle-o"></i><span>中邮订单查询</span> </a>
+                            </li>
+                            <li id="">
+                                <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i
+                                        class="fa fa-circle-o"></i><span>中邮EMS对账</span> </a>
+                            </li>
+                            <li id="">
+                                <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i
+                                        class="fa fa-circle-o"></i><span>中邮EMS对账记录</span></a>
+                            </li>
+                            <li id="">
+                                <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i
+                                        class="fa fa-circle-o"></i><span>中邮EMS对账记录审核</span></a>
+                            </li>
+                            <li id="">
+                                <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i
+                                        class="fa fa-circle-o"></i><span>中邮平账单</span></a>
+                            </li>
+                            <li id="">
+                                <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i
+                                        class="fa fa-circle-o"></i><span>当当订单查询</span></a>
+                            </li>
+                            <li id="">
+                                <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i
+                                        class="fa fa-circle-o"></i><span>当当对账</span></a>
+                            </li>
+                            <li id="">
+                                <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i
+                                        class="fa fa-circle-o"></i><span>当当对账记录</span></a>
+                            </li>
+                            <li id="">
+                                <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i
+                                        class="fa fa-circle-o"></i><span>当当对账记录审核</span></a>
+                            </li>
+                            <li id="">
+                                <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i
+                                        class="fa fa-circle-o"></i><span>当当平账单</span></a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
             <%--销售管理结束--%>
