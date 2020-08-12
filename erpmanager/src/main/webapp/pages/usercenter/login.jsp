@@ -30,18 +30,16 @@
     <link rel="stylesheet" href="../../plugins/iCheck/square/blue.css">
 </head>
 
-<body class="hold-transition login-page">
-<div class="login-box">
-    <div class="login-logo">
-
-
-        <a href="all-admin-index.html"><b>数据</b>后台管理系统</a>
-
-
+<body class="hold-transition login-page" style="background-image: url('/img/registerbj.jpg')">
+<div class="login-box" >
+    <div class="login-logo" style="margin-top: 40px">
+        <h3>天翼进销存系统</h3>
+    </div>
+    <div style="margin-left: 20px">
+        <h4 style="text-align: left;color: #72afd2">- 登录 -</h4>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">登录系统</p>
 
         <form action="${pageContext.request.contextPath}/login" method="post">
             <div class="form-group has-feedback">
@@ -60,7 +58,7 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat" style="border-radius: 12px">登录</button>
                 </div>
                 <!-- /.col -->
             </div>
@@ -99,5 +97,24 @@
     });
 </script>
 </body>
+
+<style type="text/css">
+
+    .login-box {
+        height: 454px;
+        margin-top: -277px;
+        position: absolute;
+        right: 139px;
+        top: 50%;
+        width: 480px;
+        background: rgba(255,255,255,0.8);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .login-box-body {
+        background: rgba(255,255,255,0);
+    }
+</style>
 
 </html>
