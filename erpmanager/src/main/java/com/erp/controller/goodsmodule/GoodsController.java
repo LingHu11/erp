@@ -1,7 +1,7 @@
 package com.erp.controller.goodsmodule;
 
 
-import com.erp.domain.goodsmodule.Goods;
+import com.erp.domain.goodsmodule.TbGoods;
 import com.erp.service.goodsmodule.GoodsServcie;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -19,7 +19,7 @@ import java.util.List;
 public class GoodsController {
 
     @Autowired
-    GoodsServcie goodsServcie;
+    GoodsServcie  goodsServcie;
     @ApiOperation(value = "测试接口", httpMethod = "GET")
     @RequestMapping("/")
     @ResponseBody
@@ -29,8 +29,8 @@ public class GoodsController {
     @ApiOperation(value = "查询接口",httpMethod = "GET")
     @RequestMapping("/findAll")
     @ResponseBody
-    public List<Goods> findAll(){
-        List<Goods> list = goodsServcie.findAll();
+    public List<TbGoods> findAll(){
+        List<TbGoods> list = goodsServcie.findAll();
         return list;
     }
 

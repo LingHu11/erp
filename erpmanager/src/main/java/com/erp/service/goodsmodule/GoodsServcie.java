@@ -1,9 +1,9 @@
 package com.erp.service.goodsmodule;
 
-import com.erp.domain.goodsmodule.Goods;
+import com.erp.domain.goodsmodule.TbGoods;
 
 import java.util.List;
 
 public interface GoodsServcie {
-    List<Goods> findAll();
+    List<TbGoods> findAll();
 }
