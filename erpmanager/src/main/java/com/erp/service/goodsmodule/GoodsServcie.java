@@ -7,7 +7,7 @@ import com.erp.domain.goodsmodule.TbGoods;
 import java.util.List;
 
 public interface GoodsServcie {
-    List<TbGoods> findAll();
+    List<TbGoods> findAll(Integer page, Integer size);
 
 
 }
