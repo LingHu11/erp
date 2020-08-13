@@ -26,14 +26,14 @@
                 <a href="#"> <i class="fa fa-cube"></i><span>商品与赠品管理</span> <span class="pull-right-container"><i
                         class="fa fa-angle-left pull-right"></i> </span> </a>
                 <ul class="treeview-menu" style="padding-left: 20px">
-                    <li id="user-manager">
-                        <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i
+                    <li id="user-manager">${pageContext.request.contextPath}
+                        <a href="#"> <i
                                 class="fa fa-circle-o"></i><span>商品管理</span> <span class="pull-right-container"><i
                                 class="fa fa-angle-left pull-right"></i> </span> </a>
                         <ul class="treeview-menu" style="padding-left: 20px">
                             <li id="">
-                                <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4">
-                                    <span>产品查询</span></a>
+                                <a href="${pageContext.request.contextPath}/goods/findAll?page=1&size=4">
+                                    <span>商品查询</span></a>
                             </li>
                             <li id="">
                                 <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i

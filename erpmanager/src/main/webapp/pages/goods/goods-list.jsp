@@ -76,79 +76,91 @@
 
     <!-- 内容区域 -->
     <div class="content-wrapper">
-
-        <!-- 内容头部 -->
-<%--        <section class="content-header">--%>
-<%--            <h1>--%>
-<%--                渠道分类管理 <small>渠道分类列表</small>--%>
-<%--            </h1>--%>
-<%--            <ol class="breadcrumb">--%>
-<%--                <li><a href="${pageContext.request.contextPath}/index.jsp"><i--%>
-<%--                        class="fa fa-dashboard"></i> 首页</a></li>--%>
-<%--                <li><a--%>
-<%--                        href="${pageContext.request.contextPath}/channelType/findAll.do?page=1&size=4">渠道分类管理</a></li>--%>
-<%--                <li class="active">渠道分类列表</li>--%>
-<%--            </ol>--%>
-<%--        </section>--%>
-        <!-- 内容头部 /-->
-
         <!-- 正文区域 -->
         <section class="content"> <!-- .box-body -->
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">列表</h3>
                 </div>
-
                 <div class="box-body">
                     <!-- 数据表格 -->
                     <div class="table-box">
+                        <form class="form-horizontal" action="${pageContext.request.contextPath}/goods/findBySelf" method="get">
+                            <div class="box-body">
+                                <div class="row">
+<%--                                    <input type="text" value="1" name="page" hidden="hidden">--%>
+<%--                                    <input type="text" value="4" name="size" hidden="hidden">--%>
+                                    <div class="col-xs-2">
+                                        <input type="text" class="form-control"  placeholder="商品名称" id="name" name="name" value="">
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <input type="text" class="form-control" placeholder="商品型号" id="model" name="model" value="">
+                                        <div id="box"></div>
+                                    </div>
 
-                        <!--工具栏-->
-                        <div class="pull-left">
-                            <div class="form-group form-inline">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default" title="商品分类" id="addChannelType"><i
-                                            class="fa fa-file-o"></i>商品分类
-                                    </button>
+                                    <div class="col-xs-2">
+                                        <select class="form-control" id="brandName" name="brandName" value="">
+                                            <option value="-1">商品品牌</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <select class="form-control" id="categoryName1" value="">
+                                            <option value="-1">商品一级分类</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <select class="form-control" id="categoryName2" name="categoryName" value="">
+                                            <option value="-1">商品二级分类</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit"  class="btn btn-info  pull-left" style="margin-right: 20px">搜索</button>
+                                    <a class="btn btn-info  pull-left" href="${pageContext.request.contextPath}/pages/goods/goods-add.jsp">新建</a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="box-tools pull-right">
-                            <div class="has-feedback">
-                                <input type="text" class="form-control input-sm" placeholder="搜索">
-                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                            </div>
-                        </div>
+                        </form>
                         <!--工具栏/-->
-
                         <!--数据列表-->
                         <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
                             <thead>
                             <tr>
+                                <th class="" style="padding-right:0px;">
+                                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
+                                </th>
+                                <th class="sorting_asc">ID</th>
                                 <th class="text-center">商品名称</th>
                                 <th class="text-center">商品分类</th>
                                 <th class="text-center">商品品牌</th>
                                 <th class="text-center">商品型号</th>
                                 <th class="text-center">商品颜色</th>
+                                <th class="text-center">操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${pageInfo.list}" var="type">
+                            <c:forEach items="${pageInfo.list}" var="goods" varStatus="status">
                                 <tr>
-                                    <td>${type.name}</td>
-                                    <td>${type.pTname}</td>
-                                    <td>${type.sort}</td>
-                                    <td><fmt:formatDate value="${type.ctime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                                    <td><input name="ids" type="checkbox"></td>
+                                    <td>${ status.index + 1}</td>
+                                    <td>${goods.name}</td>
+                                    <td>${goods.categoryName}</td>
+                                    <td>${goods.brandName}</td>
+                                    <td>${goods.model}</td>
+                                    <td>${goods.color}</td>
+                                        <%--                                    <td><fmt:formatDate value="${good.ctime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>--%>
                                     <td class="text-center">
                                         <button type="button" class="btn bg-olive btn-xs"
-                                                onclick="location.href='${pageContext.request.contextPath}/channelType/findById.do?tid=${type.tid}'">
+                                                onclick="location.href='${pageContext.request.contextPath}/goods/findById.do?id=${goods.id}'">
+                                            详情
+                                        </button>
+                                        <button type="button" class="btn bg-olive btn-xs"
+                                                onclick="location.href='${pageContext.request.contextPath}/goods/findById.do?id=${goods.id}'">
                                             修改
                                         </button>
 
                                         <button type="button" class="btn bg-olive btn-xs"
-                                                onclick="location.href='${pageContext.request.contextPath}/channelType/deleteById.do?tid=${type.tid}&uuser=${name}'">
+                                                onclick="location.href='${pageContext.request.contextPath}/goods/deleteById.do?id=${goods.id}'">
                                             删除
                                         </button>
+                                            <%--&uuser=${name}--%>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -159,7 +171,6 @@
                     <!-- 数据表格 /-->
                 </div>
                 <!-- /.box-body -->
-
                 <!-- .box-footer-->
                 <div class="box-footer">
                     <div class="pull-left">
@@ -175,41 +186,35 @@
                         </select> 条
                         </div>
                     </div>
-
                     <div class="box-tools pull-right">
                         <ul class="pagination">
                             <li>
-                                <a href="${pageContext.request.contextPath}/channelType/findAll.do?page=1&size=${pageInfo.pageSize}"
+                                <a href="${pageContext.request.contextPath}/goods/findAll?page=1&size=${pageInfo.pageSize}"
                                    aria-label="Previous">首页</a></li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/channelType/findAll.do?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a>
+                                <a href="${pageContext.request.contextPath}/goods/findAll.do?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a>
                             </li>
                             <c:forEach begin="1" end="${pageInfo.pages}" var="currentPage">
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/channelType/findAll.do?page=${currentPage}&size=${pageInfo.pageSize}">${currentPage}</a>
+                                    <a href="${pageContext.request.contextPath}/goods/findAll.do?page=${currentPage}&size=${pageInfo.pageSize}">${currentPage}</a>
                                 </li>
                             </c:forEach>
                             <li>
-                                <a href="${pageContext.request.contextPath}/channelType/findAll.do?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a>
+                                <a href="${pageContext.request.contextPath}/goods/findAll.do?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/channelType/findAll.do?page=${pageInfo.pages}&size=${pageInfo.pageSize}"
+                                <a href="${pageContext.request.contextPath}/goods/findAll.do?page=${pageInfo.pages}&size=${pageInfo.pageSize}"
                                    aria-label="Next">尾页</a></li>
                         </ul>
                     </div>
-
                 </div>
                 <!-- /.box-footer-->
-
             </div>
-
         </section>
         <!-- 正文区域 /-->
-
     </div>
     <!-- @@close -->
     <!-- 内容区域 /-->
-
     <!-- 底部导航 -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
@@ -326,20 +331,77 @@
                         });
 
             });
-/* ========================自己添加的js============================  */
+    /* ========================自己添加的js============================  */
     //页面加载后每页多少条的值
     $(document).ready(function () {
         $('#changePageSize').find('option[value=${pageInfo.pageSize}]').prop('selected', true);
     })
-    //添加渠道分类
-    $('#addChannelType').click(function(){
-        location.href="${pageContext.request.contextPath}/pages/channelType/channel-type-add.jsp"
+    /* ========================自己添加的js============================  */
+    $(document).ready(function () {
+        //加载品牌下拉列表
+        $.ajax({
+            url: '${pageContext.request.contextPath}/goodsBrand/findAll',
+            dataType: 'json',//接收到的数据类型转换为json
+            success: function (data) {
+                var option;
+                for (var i = 0; i < data.length; i++) {
+                    option = $("<option></option>");
+                    option.val(data[i].brandName);
+                    option.text(data[i].brandName);
+                    $('#brandName').append(option);
+                }
+            }
+        })
+        //加载类型下拉列表
+        $.ajax({
+            url: '${pageContext.request.contextPath}/goodsType/findAllParent',
+            dataType: 'json',//接收到的数据类型转换为json
+            success: function (data) {
+                var option;
+                for (var i = 0; i < data.length; i++) {
+                    option = $("<option></option>");
+                    option.val(data[i].id);
+                    option.text(data[i].categoryName);
+                    $('#categoryName1').append(option);
+                }
+            }
+        })
     })
+    //触发二级选项框
+    $('#categoryName1').change(function () {
+        var parentId = $('#categoryName1').val();
+        var option;
+        if (parentId!=-1){
+            $.ajax({
+                url: '${pageContext.request.contextPath}/goodsType/findAllSon?parentId=' + parentId,
+                dateType: 'json',
+                success: function (data) {
+                    $('#categoryName2').empty();
+                    for (var i = 0; i < data.length; i++) {
+                        option = $("<option></option>");
+                        option.val(data[i].categoryName);
+                        option.text(data[i].categoryName);
+                        $('#categoryName2').append(option);
+                    }
+                }
+            })
+        }else{
+            $('#categoryName2').empty();
+            option = $('<option value=-1>商品二级分类</option>');
+            $('#categoryName2').append(option);
+        }
+    })
+    //添加渠道分类
+    $('#addChannelType').click(function () {
+        location.href = "${pageContext.request.contextPath}/pages/goods-add.jsp"
+    })
+
     //改变页面显示的行数
     function changePageSize() {
         var pageSize = $("#changePageSize").val();
-        location.href = "${pageContext.request.contextPath}/channelType/findAll.do?page=1&size=" + pageSize;
+        location.href = "${pageContext.request.contextPath}/goods/findAll?page=1&size=" + pageSize;
     }
+
 
 </script>
 </body>
