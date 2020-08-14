@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.mapper.usercenter.MgtUserMapper">
+
+    <resultMap id="BaseResultMap" type="com.erp.domain.usercenter.MgtUser">
+        <id column="id" jdbcType="CHAR" property="id" />
+        <result column="depart_id" jdbcType="CHAR" property="departId" />
+        <result column="super_id" jdbcType="CHAR" property="superId" />
+        <result column="position_id" jdbcType="CHAR" property="positionId" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="real_name" jdbcType="VARCHAR" property="realName" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+        <result column="token" jdbcType="VARCHAR" property="token" />
+        <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    </resultMap>
+
+    <insert id="registerUser" parameterType="com.erp.domain.usercenter.MgtUser">
+        INSERT INTO mgt_user
+            (id,depart_id,super_id,position_id,username,real_name,`password`,
+            phone,email,avatar,token,is_deleted,gmt_create,gmt_modified)
+        VALUES
+			(#{id},#{departId},#{superId},#{positionId},#{username},#{realName},#{password},
+			#{phone},#{email},#{avatar},#{token}, 0,#{gmtCreate},#{gmtModified});
+    </insert>
+
+    <update id="updateUser" parameterType="com.erp.domain.usercenter.MgtUser">
+        UPDATE mgt_user
+        <set>
+            <if test="departId != null">depart_id=#{departId},</if>
+            <if test="superId != null">super_id=#{superId},</if>
+            <if test="positionId != null">position_id=#{positionId},</if>
+            <if test="username != null">username=#{username},</if>
+            <if test="realName != null">real_name=#{realName},</if>
+            <if test="password != null">password=#{password},</if>
+            <if test="phone != null">phone=#{phone},</if>
+            <if test="email != null">email=#{email},</if>
+            <if test="avatar != null">avatar=#{avatar},</if>
+            <if test="token != null">token=#{token}</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="getUserByName" parameterType="string" resultMap="BaseResultMap">
+        SELECT * FROM mgt_user mu WHERE username = #{username}
+    </select>
+
+    <select id="getUserById" parameterType="string" resultMap="BaseResultMap">
+        SELECT * FROM mgt_user mu WHERE id = #{id}
+    </select>
+
+    <select id="getUserByCondition" parameterType="com.erp.domain.usercenter.MgtUser" resultMap="BaseResultMap">
+         SELECT * FROM mgt_user mu
+         <where>
+             <if test="id != null" >
+                id = #{id}
+             </if>
+             <if test="departId != null" >
+                 and depart_id = #{departId}
+             </if>
+             <if test="superId != null" >
+                 and super_id = #{superId}
+             </if>
+             <if test="positionId != null" >
+                 and position_id = #{positionId}
+             </if>
+             <if test="realName != null" >
+                 and real_name = #{realName}
+             </if>
+             <if test="phone != null" >
+                 and phone = #{phone}
+             </if>
+             <if test="email != null" >
+                 and email = #{email}
+             </if>
+             <if test="isDeleted != null" >
+                 and is_deleted = 0
+             </if>
+         </where>
+    </select>
+
+    <delete id="deleteUserById" parameterType="string">
+        UPDATE mgt_user SET is_deleted = 1 WHERE id = #{id}
+    </delete>
+
+</mapper>

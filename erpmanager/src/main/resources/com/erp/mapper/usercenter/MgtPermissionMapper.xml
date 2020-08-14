@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.mapper.usercenter.MgtPermissionMapper">
+
+    <resultMap id="BaseResultMap" type="com.erp.domain.usercenter.MgtPermission">
+        <id column="id" jdbcType="CHAR" property="id" />
+        <result column="pid" jdbcType="CHAR" property="pid" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="type" jdbcType="TINYINT" property="type" />
+        <result column="permission_value" jdbcType="VARCHAR" property="permissionValue" />
+        <result column="path" jdbcType="VARCHAR" property="path" />
+        <result column="status" jdbcType="TINYINT" property="status" />
+        <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    </resultMap>
+
+    <insert id="registerPermission" parameterType="com.erp.domain.usercenter.MgtPermission">
+        INSERT INTO mgt_permission
+            (id,pid,`name`,`type`,permission_value,path,status,is_deleted,gmt_create,gmt_modified)
+        VALUES
+			(#{id},#{pid},#{name},#{type}, #{permissionValue},#{path},#{status},0,#{gmtCreate},#{gmtModified});
+    </insert>
+
+    <delete id="deletePermissionById" parameterType="string">
+        UPDATE mgt_permission SET is_deleted = 1 WHERE id = #{id}
+    </delete>
+
+    <update id="updatePermission" parameterType="com.erp.domain.usercenter.MgtPermission">
+        UPDATE mgt_permission
+        <set>
+            <if test="pid != null">pid=#{pid},</if>
+            <if test="name != null">name=#{name},</if>
+            <if test="type != null">type=#{type}</if>
+            <if test="permissionValue != null">permission_value=#{permissionValue}</if>
+            <if test="path != null">path=#{path}</if>
+            <if test="status != null">status=#{status}</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="getPermissionByPermissionName" parameterType="string" resultMap="BaseResultMap">
+        SELECT * FROM mgt_permission mp WHERE `name` = #{name}
+    </select>
+
+    <select id="getPermissionById" parameterType="string" resultMap="BaseResultMap">
+        SELECT * FROM mgt_permission mp WHERE id = #{id}
+    </select>
+
+    <select id="getPermissionByCondition" parameterType="com.erp.domain.usercenter.MgtPermission" resultMap="BaseResultMap">
+        SELECT * FROM mgt_permission mp
+        <where>
+            <if test="id != null" >
+                id = #{id}
+            </if>
+            <if test="pid != null" >
+                and pid = #{pid}
+            </if>
+            <if test="name != null" >
+                and `name` = #{name}
+            </if>
+            <if test="status != null" >
+                and status = #{status}
+            </if>
+            <if test="isDeleted != null" >
+                and is_deleted = 0
+            </if>
+        </where>
+    </select>
+
+</mapper>

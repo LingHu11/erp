@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.mapper.usercenter.MgtRoleMapper">
+
+    <resultMap id="BaseResultMap" type="com.erp.domain.usercenter.MgtRole">
+        <id column="id" jdbcType="CHAR" property="id" />
+        <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+        <result column="role_code" jdbcType="VARCHAR" property="roleCode" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    </resultMap>
+
+    <insert id="registerRole" parameterType="com.erp.domain.usercenter.MgtRole">
+        INSERT INTO mgt_role
+            (id,role_name,role_code,remark,is_deleted,gmt_create,gmt_modified)
+        VALUES
+			(#{id},#{roleName},#{roleCode},#{remark}, 0,#{gmtCreate},#{gmtModified});
+    </insert>
+
+    <delete id="deleteRoleById" parameterType="string">
+        UPDATE mgt_role SET is_deleted = 1 WHERE id = #{id}
+    </delete>
+
+    <update id="updateRole" parameterType="com.erp.domain.usercenter.MgtRole">
+        UPDATE mgt_role
+        <set>
+            <if test="roleName != null">role_name=#{roleName},</if>
+            <if test="roleCode != null">role_code=#{roleCode},</if>
+            <if test="remark != null">remark=#{remark}</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="getRoleById" parameterType="string" resultMap="BaseResultMap">
+        SELECT * FROM mgt_role mr WHERE id = #{id}
+    </select>
+
+    <select id="getRoleByRoleName" parameterType="string" resultMap="BaseResultMap">
+        SELECT * FROM mgt_role mr WHERE role_name = #{roleName}
+    </select>
+
+    <select id="getRoleByCondition" parameterType="com.erp.domain.usercenter.MgtRole" resultMap="BaseResultMap">
+        SELECT * FROM mgt_role mr
+        <where>
+            <if test="id != null" >
+                id = #{id}
+            </if>
+            <if test="roleName != null" >
+                and role_name = #{roleName}
+            </if>
+            <if test="roleCode != null" >
+                and role_code = #{roleCode}
+            </if>
+            <if test="true" >
+                and is_deleted = 0
+            </if>
+        </where>
+    </select>
+
+</mapper>

@@ -48,15 +48,15 @@
             <p style="text-align: left">我有账号，现在就去<a href="login.jsp" style="color: blue">登录</a></p>
         </div>
 
-        <form action="a${pageContext.request.contextPath}/register" method="post" name="form" onSubmit="return beforeSubmit(this);">
+        <form action="${pageContext.request.contextPath}/register" method="post" name="form" onSubmit="return beforeSubmit(this);">
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" data-toggle="tooltip"
-                       data-placement="top" title="顶部的 Tooltip" id="nickName" name="nickName" placeholder="昵称">
+                       data-placement="top" title="顶部的 Tooltip" id="realName" name="realName" placeholder="真实姓名">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
             </div>
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" id="username" name="username" placeholder="Email">
+                <input type="email" class="form-control" id="username" name="username" placeholder="登录名">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
@@ -113,7 +113,7 @@
     $(function () { $("[data-toggle='tooltip']").tooltip(); });
 
     function beforeSubmit(form) {
-        if (form.nickName.value == '') {
+        if (form.realName.value == '') {
             alert('昵称不能为空！');
             form.nickName.focus();
             return false;
@@ -128,18 +128,18 @@
             form.password.focus();
             return false;
         }
-        return confirmName(document.getElementById('nickName').value)
+        return confirmName(document.getElementById('realName').value)
             && confirmEmail(document.getElementById('username').value)
             && confirmPassword(document.getElementById('password').value);
     }
 
-    // 确认用户昵称
+    // 确认用户真名
     function confirmName() {
         // TODO
     }
 
     // 确认用户名
-    function confirmEmail(str) {
+    function confirmlonginName(str) {
         // TODO
     };
 
@@ -166,6 +166,10 @@
 
     .register-box-body {
         background: rgba(255,255,255,0);
+    }
+
+    .form-control {
+        background: rgba(255,255,255,0.5);
     }
 </style>
 
