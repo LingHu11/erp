@@ -37,7 +37,16 @@ public class GoodsTypeServcieImpl implements GoodsTypeServcie {
         return list;
     }
 
-
-
-
+    @Override
+    public GoodsType getCategoryParentName(String categoryName) {
+        GoodsTypeExample goodsTypeExample = new GoodsTypeExample();
+        GoodsTypeExample.Criteria criteria = goodsTypeExample.createCriteria();
+        //通过二级分类名查询二级完整信息
+        criteria.andCategoryNameEqualTo(categoryName);
+        //得到查询结果
+        List<GoodsType> goodsTypes = goodsTypeMapper.selectByExample(goodsTypeExample);
+        //获取父类信息
+        GoodsType goodsType = goodsTypeMapper.selectByPrimaryKey(goodsTypes.get(0).getParentId());
+        return goodsType;
+    }
 }

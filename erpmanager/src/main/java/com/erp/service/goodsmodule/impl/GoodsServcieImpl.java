@@ -35,9 +35,13 @@ class GoodsServcieImpl implements GoodsServcie {
         PageHelper.startPage(page, size);
         GoodsExample goodsExample = new GoodsExample();
         GoodsExample.Criteria criteria = goodsExample.createCriteria();
-        criteria.andNameEqualTo(good.getName());
-        criteria.andModelEqualTo(good.getModel());
-        if (!good.getBrandName().equals(-1)){
+        if (!good.getName().equals("")){
+            criteria.andNameEqualTo(good.getName());
+        }
+        if (!good.getModel().equals("")){
+            criteria.andModelEqualTo(good.getModel());
+        }
+        if (!good.getBrandName().equals("-1")){
             criteria.andBrandNameEqualTo(good.getBrandName());
         }
         if(!good.getCategoryName().equals("-1")){
@@ -52,4 +56,18 @@ class GoodsServcieImpl implements GoodsServcie {
         goodsMapper.insert(good);
         return null;
     }
+
+    @Override
+    public Goods findById(Integer id) {
+        Goods goods = goodsMapper.selectByPrimaryKey(id);
+        return goods;
+    }
+
+    @Override
+    public Integer update(Goods good) {
+        int i = goodsMapper.updateByPrimaryKey(good);
+        return i;
+    }
+
+
 }

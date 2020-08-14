@@ -2,8 +2,9 @@ package com.erp.mapper.goodsmodule;
 
 import com.erp.domain.goodsmodule.GoodsToComplimentray;
 import com.erp.domain.goodsmodule.GoodsToComplimentrayExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface GoodsToComplimentrayMapper {
     int countByExample(GoodsToComplimentrayExample example);

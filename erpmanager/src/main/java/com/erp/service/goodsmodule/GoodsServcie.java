@@ -10,4 +10,8 @@ public interface GoodsServcie {
     List<Goods> findAll(Integer page, Integer size,Goods good);
 
     Integer insert(Goods good);
+
+    Integer update(Goods good);
+
+    Goods findById(Integer id);
 }

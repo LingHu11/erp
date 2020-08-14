@@ -12,7 +12,7 @@
     <result column="purchase_dept" jdbcType="VARCHAR" property="purchaseDept" />
     <result column="applicant" jdbcType="VARCHAR" property="applicant" />
     <result column="approval_user" jdbcType="VARCHAR" property="approvalUser" />
-    <result column="approval_time" jdbcType="TIME" property="approvalTime" />
+    <result column="approval_time" jdbcType="TIMESTAMP" property="approvalTime" />
     <result column="approval_status" jdbcType="VARCHAR" property="approvalStatus" />
     <result column="perserve1" jdbcType="VARCHAR" property="perserve1" />
     <result column="perserve2" jdbcType="VARCHAR" property="perserve2" />
@@ -118,7 +118,7 @@
     values (#{id,jdbcType=INTEGER}, #{convertNumber,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{categoryName,jdbcType=VARCHAR}, #{brandName,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, 
       #{purchasePrice,jdbcType=DECIMAL}, #{purchaseDept,jdbcType=VARCHAR}, #{applicant,jdbcType=VARCHAR}, 
-      #{approvalUser,jdbcType=VARCHAR}, #{approvalTime,jdbcType=TIME}, #{approvalStatus,jdbcType=VARCHAR}, 
+      #{approvalUser,jdbcType=VARCHAR}, #{approvalTime,jdbcType=TIMESTAMP}, #{approvalStatus,jdbcType=VARCHAR}, 
       #{perserve1,jdbcType=VARCHAR}, #{perserve2,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.erp.domain.goodsmodule.GoodsToComplimentray">
@@ -199,7 +199,7 @@
         #{approvalUser,jdbcType=VARCHAR},
       </if>
       <if test="approvalTime != null">
-        #{approvalTime,jdbcType=TIME},
+        #{approvalTime,jdbcType=TIMESTAMP},
       </if>
       <if test="approvalStatus != null">
         #{approvalStatus,jdbcType=VARCHAR},
@@ -252,7 +252,7 @@
         approval_user = #{record.approvalUser,jdbcType=VARCHAR},
       </if>
       <if test="record.approvalTime != null">
-        approval_time = #{record.approvalTime,jdbcType=TIME},
+        approval_time = #{record.approvalTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.approvalStatus != null">
         approval_status = #{record.approvalStatus,jdbcType=VARCHAR},
@@ -280,7 +280,7 @@
       purchase_dept = #{record.purchaseDept,jdbcType=VARCHAR},
       applicant = #{record.applicant,jdbcType=VARCHAR},
       approval_user = #{record.approvalUser,jdbcType=VARCHAR},
-      approval_time = #{record.approvalTime,jdbcType=TIME},
+      approval_time = #{record.approvalTime,jdbcType=TIMESTAMP},
       approval_status = #{record.approvalStatus,jdbcType=VARCHAR},
       perserve1 = #{record.perserve1,jdbcType=VARCHAR},
       perserve2 = #{record.perserve2,jdbcType=VARCHAR}
@@ -319,7 +319,7 @@
         approval_user = #{approvalUser,jdbcType=VARCHAR},
       </if>
       <if test="approvalTime != null">
-        approval_time = #{approvalTime,jdbcType=TIME},
+        approval_time = #{approvalTime,jdbcType=TIMESTAMP},
       </if>
       <if test="approvalStatus != null">
         approval_status = #{approvalStatus,jdbcType=VARCHAR},
@@ -344,7 +344,7 @@
       purchase_dept = #{purchaseDept,jdbcType=VARCHAR},
       applicant = #{applicant,jdbcType=VARCHAR},
       approval_user = #{approvalUser,jdbcType=VARCHAR},
-      approval_time = #{approvalTime,jdbcType=TIME},
+      approval_time = #{approvalTime,jdbcType=TIMESTAMP},
       approval_status = #{approvalStatus,jdbcType=VARCHAR},
       perserve1 = #{perserve1,jdbcType=VARCHAR},
       perserve2 = #{perserve2,jdbcType=VARCHAR}

@@ -32,8 +32,8 @@
                                 class="fa fa-angle-left pull-right"></i> </span> </a>
                         <ul class="treeview-menu" style="padding-left: 20px">
                             <li id="">
-                                <a href="${pageContext.request.contextPath}/goods/findAll?page=1&size=4">
-                                    <span>商品查询</span></a>
+                                <a href="${pageContext.request.contextPath}/goods/findAll?page=1&size=4"> <i
+                                        class="fa fa-circle-o"></i> <span>商品管理</span></a>
                             </li>
                             <li id="">
                                 <a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=4"> <i
@@ -62,7 +62,7 @@
 
                     </li>
                     <li id="role-manager">
-                        <a href="${pageContext.request.contextPath}/role/findAll.do?page=1&size=4"> <i
+                        <a href="${pageContext.request.contextPath}/goodstocompli/findAll?page=1&size=4"> <i
                                 class="fa fa-circle-o"></i> 赠品管理 </a>
                     </li>
                     <li id="permission-setting">
@@ -172,46 +172,10 @@
             </li>
             <%--销售管理结束--%>
             <%--售后开始--%>
-            <li class="treeview"><a href="#">
-                <i class="fa fa-cube"> </i>
-                <span>渠道版本</span> <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-				</span>
-            </a>
-                <ul class="treeview-menu">
-                    <li id="channel-setting">
-                        <a href="${pageContext.request.contextPath}/channel/findAll.do?page=1&size=4">
-                            <i class="fa fa-circle-o"> </i> 渠道管理
-                        </a>
-                    </li>
 
-                    <li id="channel-type-setting">
-                        <a href="${pageContext.request.contextPath}/channelType/findAll.do?page=1&size=4">
-                            <i class="fa fa-circle-o"></i> 渠道分类管理
-                        </a>
-                    </li>
-                </ul>
-            </li>
             <%--售后结束--%>
             <%--权限开始--%>
-                <li class="treeview"><a href="#"> <i class="fa fa-cube"></i>
-                    <span>游戏管理</span> <span class="pull-right-container"> <i
-                            class="fa fa-angle-left pull-right"></i>
-				</span>
-                </a>
-                    <ul class="treeview-menu">
 
-                        <li id="gamelist-setting"><a
-                                href="${pageContext.request.contextPath}/game/findAll.do?page=1&size=4">
-                            <i class="fa fa-circle-o"></i> 游戏列表
-                        </a></li>
-                        <li id="gameadd-setting"><a
-                                href="${pageContext.request.contextPath}/game/getType.do"> <i
-                                class="fa fa-circle-o"></i> 游戏添加
-                        </a></li>
-
-                    </ul>
-                </li>
             <%--权限结束--%>
         </ul>
     </section>
