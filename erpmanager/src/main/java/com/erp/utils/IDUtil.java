@@ -1,5 +1,6 @@
 package com.erp.utils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -28,29 +29,30 @@ public class IDUtil {
         return str;
     }
 
+
     /**
      * 商品id生成
      */
-    public static String genItemId(DepartmentName name) {
+    public static String getItemId() {
         //取当前时间的长整形值包含毫秒
         long millis = System.currentTimeMillis();
         //加上两位随机数
         Random random = new Random();
-        int end2 = random.nextInt(999999);
+        int end2 = random.nextInt(999999999);
         millis = millis * 1000000 + end2;
         //如果不足两位前面补0 String str = CompressNumber(millis);
-        String sid = name.getAbbreviation() + Long.toString(millis, 32);
+        String sid = Long.toString(millis, 32);
         return sid;
     }
 
 
 //    public static void main(String[] args) {
 //        for (int i = 0; i < 10; i++) {
-//            String s = genItemId(DepartmentName.AFTER_SALES_DEPARTMENT);
-////            System.out.println(s);
+//            String s = getItemId();
+//            System.out.println(s);
 ////            System.out.println(s.substring(0, 3));
 ////            System.out.println(getDepartmentById(s));
-//            System.out.println(getGmtCreateById(s,true));
+////            System.out.println(getGmtCreateById(s,true));
 //        }
 //    }
 
@@ -110,4 +112,5 @@ public class IDUtil {
         } while (number != 0);
         return new String(buf, charPos, (64 - charPos));
     }
+
 }

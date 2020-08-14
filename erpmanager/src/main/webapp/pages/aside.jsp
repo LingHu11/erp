@@ -71,6 +71,26 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="treeview">
+                <a href="#"> <i class="fa fa-cube"></i><span>系统管理</span> <span class="pull-right-container"><i
+                        class="fa fa-angle-left pull-right"></i> </span> </a>
+                <ul class="treeview-menu" style="padding-left: 20px">
+                    <li id="userManager">
+                        <a href="${pageContext.request.contextPath}/user/list?page=1&size=9"><i
+                                class="fa fa-circle-o"></i><span>用户管理</span></a>
+                    </li>
+                    <li id="roleManager">
+                        <a href="${pageContext.request.contextPath}/role/list?page=1&size=9"> <i
+                                class="fa fa-circle-o"></i><span>角色管理</span> </a>
+                    </li>
+                    <li id="permissionSetting">
+                        <a href="${pageContext.request.contextPath}/permission/list?page=1&size=9"> <i
+                                class="fa fa-circle-o"></i><span>权限管理</span></a>
+                    </li>
+                </ul>
+            </li>
+
             <%--商品与赠品结束--%>
             <%--销售管理开始--%>
             <li class="treeview"><a href="#"> <i class="fa fa-cube"></i>
