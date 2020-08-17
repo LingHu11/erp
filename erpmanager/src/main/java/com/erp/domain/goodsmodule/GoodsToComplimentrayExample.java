@@ -3,7 +3,6 @@ package com.erp.domain.goodsmodule;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 public class GoodsToComplimentrayExample {
@@ -105,32 +104,6 @@ public class GoodsToComplimentrayExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
-        }
-
-        protected void addCriterionForJDBCTime(String condition, Date value, String property) {
-            if (value == null) {
-                throw new RuntimeException("Value for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Time(value.getTime()), property);
-        }
-
-        protected void addCriterionForJDBCTime(String condition, List<Date> values, String property) {
-            if (values == null || values.size() == 0) {
-                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
-            }
-            List<java.sql.Time> timeList = new ArrayList<java.sql.Time>();
-            Iterator<Date> iter = values.iterator();
-            while (iter.hasNext()) {
-                timeList.add(new java.sql.Time(iter.next().getTime()));
-            }
-            addCriterion(condition, timeList, property);
-        }
-
-        protected void addCriterionForJDBCTime(String condition, Date value1, Date value2, String property) {
-            if (value1 == null || value2 == null) {
-                throw new RuntimeException("Between values for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Time(value1.getTime()), new java.sql.Time(value2.getTime()), property);
         }
 
         public Criteria andIdIsNull() {
@@ -824,52 +797,52 @@ public class GoodsToComplimentrayExample {
         }
 
         public Criteria andApprovalTimeEqualTo(Date value) {
-            addCriterionForJDBCTime("approval_time =", value, "approvalTime");
+            addCriterion("approval_time =", value, "approvalTime");
             return (Criteria) this;
         }
 
         public Criteria andApprovalTimeNotEqualTo(Date value) {
-            addCriterionForJDBCTime("approval_time <>", value, "approvalTime");
+            addCriterion("approval_time <>", value, "approvalTime");
             return (Criteria) this;
         }
 
         public Criteria andApprovalTimeGreaterThan(Date value) {
-            addCriterionForJDBCTime("approval_time >", value, "approvalTime");
+            addCriterion("approval_time >", value, "approvalTime");
             return (Criteria) this;
         }
 
         public Criteria andApprovalTimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCTime("approval_time >=", value, "approvalTime");
+            addCriterion("approval_time >=", value, "approvalTime");
             return (Criteria) this;
         }
 
         public Criteria andApprovalTimeLessThan(Date value) {
-            addCriterionForJDBCTime("approval_time <", value, "approvalTime");
+            addCriterion("approval_time <", value, "approvalTime");
             return (Criteria) this;
         }
 
         public Criteria andApprovalTimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCTime("approval_time <=", value, "approvalTime");
+            addCriterion("approval_time <=", value, "approvalTime");
             return (Criteria) this;
         }
 
         public Criteria andApprovalTimeIn(List<Date> values) {
-            addCriterionForJDBCTime("approval_time in", values, "approvalTime");
+            addCriterion("approval_time in", values, "approvalTime");
             return (Criteria) this;
         }
 
         public Criteria andApprovalTimeNotIn(List<Date> values) {
-            addCriterionForJDBCTime("approval_time not in", values, "approvalTime");
+            addCriterion("approval_time not in", values, "approvalTime");
             return (Criteria) this;
         }
 
         public Criteria andApprovalTimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCTime("approval_time between", value1, value2, "approvalTime");
+            addCriterion("approval_time between", value1, value2, "approvalTime");
             return (Criteria) this;
         }
 
         public Criteria andApprovalTimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCTime("approval_time not between", value1, value2, "approvalTime");
+            addCriterion("approval_time not between", value1, value2, "approvalTime");
             return (Criteria) this;
         }
 

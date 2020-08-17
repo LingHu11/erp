@@ -36,7 +36,7 @@
     <!-- 开启对SpringMVC注解的支持 -->
     <mvc:annotation-driven />
     <!--配置自定义异常解析器-->
-    <!--<bean id="MyExceptionResolver" class="cn.itcast.exception.MyExceptionResolver"></bean>-->
+    <bean id="MyExceptionResolver" class="com.erp.exception.MyExceptionResolver"></bean>
     <!--
         支持AOP的注解支持，AOP底层使用代理技术
         JDK动态代理，要求必须有接口

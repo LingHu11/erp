@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ComplimentrayExample {
+
     protected String orderByClause;
 
     protected boolean distinct;

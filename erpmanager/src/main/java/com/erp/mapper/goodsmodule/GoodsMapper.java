@@ -28,5 +28,5 @@ public interface GoodsMapper {
 
     int updateByPrimaryKey(Goods record);
 
-    void reduceById(Goods goods);
+    int reduceById(Goods goods);
 }

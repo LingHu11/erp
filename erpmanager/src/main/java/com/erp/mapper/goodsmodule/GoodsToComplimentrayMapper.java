@@ -2,8 +2,9 @@ package com.erp.mapper.goodsmodule;
 
 import com.erp.domain.goodsmodule.GoodsToComplimentray;
 import com.erp.domain.goodsmodule.GoodsToComplimentrayExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface GoodsToComplimentrayMapper {
     int countByExample(GoodsToComplimentrayExample example);
@@ -27,4 +28,8 @@ public interface GoodsToComplimentrayMapper {
     int updateByPrimaryKeySelective(GoodsToComplimentray record);
 
     int updateByPrimaryKey(GoodsToComplimentray record);
+    //自己写的
+    int updateForDenied(GoodsToComplimentray record);
+
+    Integer updateForNoCheck(GoodsToComplimentray goodsToComplimentray);
 }

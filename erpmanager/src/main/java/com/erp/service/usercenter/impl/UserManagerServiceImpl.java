@@ -1,13 +1,11 @@
 package com.erp.service.usercenter.impl;
 
 import com.erp.domain.usercenter.MgtUser;
-import com.erp.exception.MyException;
 import com.erp.mapper.usercenter.MgtUserMapper;
 import com.erp.service.usercenter.UserManagerService;
 import org.springframework.stereotype.Service;
 import com.erp.utils.*;
 import com.github.pagehelper.PageHelper;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 

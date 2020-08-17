@@ -11,5 +11,7 @@ public interface GoodsServcie {
 
     Integer insert(Goods good);
 
-    void reduceById(Integer id,Integer number);
+    Integer update(Goods good);
+
+    Goods findById(Integer id);
 }

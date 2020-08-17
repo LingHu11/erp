@@ -35,7 +35,7 @@
 								<a href="#" class="btn btn-default btn-flat">修改密码</a>
 							</div>
 							<div class="pull-right">
-								<a href="${pageContext.request.contextPath}/logout.do"
+								<a href="${pageContext.request.contextPath}/pages/usercenter/login.jsp"
 									class="btn btn-default btn-flat">注销</a>
 							</div>
 						</li>

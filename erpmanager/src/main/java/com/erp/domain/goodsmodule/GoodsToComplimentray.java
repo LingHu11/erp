@@ -1,33 +1,38 @@
 package com.erp.domain.goodsmodule;
 
+import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.metadata.BaseRowModel;
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class GoodsToComplimentray {
+public class GoodsToComplimentray extends BaseRowModel {
+
     private Integer id;
-
-    private String convertNumber;
-
+    @ExcelProperty(value = "赠品名称",index = 0 )
     private String name;
-
+    @ExcelProperty(value = "赠品入库数",index = 1 )
+    private String convertNumber;
+    @ExcelProperty(value = "二级分类",index = 2 )
     private String categoryName;
-
+    @ExcelProperty(value = "品牌名称",index = 3 )
     private String brandName;
-
+    @ExcelProperty(value = "赠品型号",index = 4 )
     private String model;
-
+    @ExcelProperty(value = "采购价",index = 5 )
     private BigDecimal purchasePrice;
-
+    @ExcelProperty(value = "采购部门",index = 6 )
     private String purchaseDept;
-
+    @ExcelProperty(value = "申请人",index = 7 )
     private String applicant;
-
+    @ExcelProperty(value = "审核人",index = 8 )
     private String approvalUser;
-
+    @ExcelProperty(value = "审核时间",index = 9 )
     private Date approvalTime;
-
+    @ExcelProperty(value = "审核状态",index = 10 )
     private String approvalStatus;
-
+    @ExcelProperty(value = "审核意见",index = 11 )
     private String perserve1;
 
     private String perserve2;
