@@ -77,95 +77,108 @@
     <!-- 内容区域 -->
     <div class="content-wrapper">
 
-        <!-- 内容头部 -->
-        <section class="content-header">
-            <h1>
-                商品管理 <small>商品添加</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i
-                        class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a
-                        href="#">商品管理</a></li>
-                <li class="active">商品添加</li>
-            </ol>
-        </section>
-        <!-- 内容头部 /-->
-
-        <form action="${pageContext.request.contextPath}/goods/insert"
+        <form action="${pageContext.request.contextPath}/goodstocompli/update"
               method="post">
+            <input class="form-control" name="id" type="hidden" value="${goods.id}">
             <!-- 正文区域 -->
             <section class="content"> <!--产品信息-->
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">商品信息</div>
+                    <div class="panel-heading">赠品信息</div>
                     <div class="row data-type">
-                        <div class="col-md-2 title">商品数量</div>
-                        <div class="col-md-4 data">
-                            <input type="text" class="form-control" name="number"
-                                   placeholder="商品数量" value="">
-                        </div>
-
-                        <div class="col-md-2 title">商品名称</div>
+                        <div class="col-md-2 title">赠品名称</div>
                         <div class="col-md-4 data">
                             <input type="text" class="form-control" name="name"
-                                   placeholder="商品名称" value="">
-                        </div>
-
-                        <div class="col-md-2 title">一级分类</div>
-                        <div class="col-md-4 data">
-                            <select class="form-control" id="categoryName1">
-                                <option value="-1">商品一级分类</option>
-                            </select>
+                                   placeholder="商品名称" value="${goods.name}" readonly="readonly">
                         </div>
                         <div class="col-md-2 title">二级分类</div>
                         <div class="col-md-4 data">
-                            <select class="form-control" name="categoryName" id="categoryName2">
-                                <option>二级分类</option>
-                            </select>
+                            <input type="text" class="form-control" name="categoryName"
+                                   placeholder="商品名称" value="${goods.categoryName}" readonly="readonly">
                         </div>
 
                         <div class="col-md-2 title">品牌名称</div>
                         <div class="col-md-4 data">
-                            <select class="form-control" id="brandName" name="brandName">
-                            </select>
+                            <input type="text" class="form-control" name="brandName"
+                                   placeholder="品牌名称" value="${goods.brandName}" readonly="readonly">
                         </div>
 
-                        <div class="col-md-2 title">品牌型号</div>
+                        <div class="col-md-2 title">商品型号</div>
                         <div class="col-md-4 data">
                             <input type="text" class="form-control" name="model"
-                                   placeholder="品牌名称" value="">
+                                   placeholder="商品型号" value="${goods.model}" readonly="readonly">
                         </div>
 
                         <div class="col-md-2 title">购买价格</div>
                         <div class="col-md-4 data">
                             <input type="text" class="form-control" name="purchasePrice"
-                                   placeholder="购买价格" value="">
+                                   placeholder="购买价格" value="${goods.purchasePrice}" readonly="readonly">
                         </div>
 
-                        <div class="col-md-2 title">市场价格</div>
+                        <div class="col-md-2 title">购买部门</div>
                         <div class="col-md-4 data">
-                            <input type="text" class="form-control" name="marketPrice"
-                                   placeholder="市场价格" value="">
+                            <input type="text" class="form-control" name="purchaseDept"
+                                   placeholder="购买部门" value="${goods.purchaseDept}" readonly="readonly">
                         </div>
+                        <c:if test="${whichpage!='0'}">
+                            <div class="col-md-2 title">现有商品数量</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control"
+                                       placeholder="赠品入库数" value="149" readonly="readonly">
+                            </div>
 
-                        <div class="col-md-2 title">商城价格</div>
+                            <div class="col-md-2 title">赠品入库数</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" name="convertNumber"
+                                       placeholder="赠品入库数" value="${goods.convertNumber}">
+                            </div>
+                        </c:if>
+                        <c:if test="${whichpage=='0'}">
+                            <div class="col-md-2 title">赠品入库数</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" name="convertNumber"
+                                       placeholder="赠品入库数" value="${goods.convertNumber}" readonly="readonly">
+                            </div>
+                        </c:if>
+                        <div class="col-md-2 title">审核人</div>
                         <div class="col-md-4 data">
-                            <input type="text" class="form-control" name="mallPrice"
-                                   placeholder="商城价格" value="">
+                            <input type="text" class="form-control" name="approvalUser"
+                                   value="${goods.approvalUser}" readonly="readonly">
                         </div>
 
+                        <c:if test="${goods.approvalStatus !='未审核'}">
+                            <div class="col-md-2 title">审核时间</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" name="approvalTime"
+                                       value="${goods.approvalTime}"
+                                       readonly="readonly">
+                            </div>
+                            <div class="col-md-2 title">审核意见</div>
+                            <div class="col-md-4 data">
+                                <input type="text" class="form-control" name="perserve1"
+                                       value="${goods.perserve1}" readonly="readonly">
+                            </div>
+                        </c:if>
+                        <div class="col-md-2 title">审核状态</div>
+                        <div class="col-md-4 data">
+                            <input type="text" class="form-control" name="approvalStatus"
+                                   value="${goods.approvalStatus}" readonly="readonly">
+                        </div>
+
+                        <%--value="<fmt:formatDate value='${goods.approvalTime}' type='date' pattern='yyyy-MM-dd HH:mm:ss'/>"--%>
+                        <%--审核意见用保留字段 perserve1--%>
                     </div>
                 </div>
                 <!--订单信息/--> <!--工具栏-->
                 <div class="box-tools text-center">
-                    <button type="submit" class="btn bg-maroon" id="save">保存</button>
+                    <c:if test="${whichpage!='0'}">
+                        <button type="submit" class="btn bg-maroon" id="save">保存</button>
+                    </c:if>
                     <button type="button" class="btn bg-default"
                             onclick="history.back(-1);">返回
                     </button>
                 </div>
-                <!--工具栏/-->
-            </section>
+                <!--工具栏/--> </section>
             <!-- 正文区域 /-->
         </form>
     </div>
@@ -316,58 +329,6 @@
             todayBtn: true,
             language: 'zh-CN'
         });
-        //加载品牌下拉列表
-        $.ajax({
-            url: '${pageContext.request.contextPath}/goodsBrand/findAll',
-            dataType: 'json',//接收到的数据类型转换为json
-            success: function (data) {
-                var option;
-                for (var i = 0; i < data.length; i++) {
-                    option = $("<option></option>");
-                    option.val(data[i].brandName);
-                    option.text(data[i].brandName);
-                    $('#brandName').append(option);
-                }
-            }
-        })
-        //加载类型下拉列表
-        $.ajax({
-            url: '${pageContext.request.contextPath}/goodsType/findAllParent',
-            dataType: 'json',//接收到的数据类型转换为json
-            success: function (data) {
-                var option;
-                for (var i = 0; i < data.length; i++) {
-                    option = $("<option></option>");
-                    option.val(data[i].id);
-                    option.text(data[i].categoryName);
-                    $('#categoryName1').append(option);
-                }
-            }
-        })
-    })
-    //触发二级选项框
-    $('#categoryName1').change(function () {
-        var parentId = $('#categoryName1').val();
-        var option;
-        if (parentId!=-1){
-            $.ajax({
-                url: '${pageContext.request.contextPath}/goodsType/findAllSon?parentId=' + parentId,
-                dateType: 'json',
-                success: function (data) {
-                    $('#categoryName2').empty();
-                    for (var i = 0; i < data.length; i++) {
-                        option = $("<option></option>");
-                        option.val(data[i].categoryName);
-                        option.text(data[i].categoryName);
-                        $('#categoryName2').append(option);
-                    }
-                }
-            })
-        }else{
-            $('#categoryName2').empty();
-            option = $('<option value=-1>商品二级分类</option>');
-            $('#categoryName2').append(option);
-        }
     })
 
 </script>

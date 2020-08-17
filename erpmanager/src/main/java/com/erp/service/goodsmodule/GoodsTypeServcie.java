@@ -2,6 +2,7 @@ package com.erp.service.goodsmodule;
 
 import com.erp.domain.goodsmodule.GoodsType;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface GoodsTypeServcie {

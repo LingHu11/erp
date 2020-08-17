@@ -350,4 +350,9 @@
       perserve2 = #{perserve2,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="reduceById" parameterType="com.erp.domain.goodsmodule.Goods">
+    UPDATE goods SET number=#{number} WHERE id = #{id}
+  </update>
+
+
 </mapper>

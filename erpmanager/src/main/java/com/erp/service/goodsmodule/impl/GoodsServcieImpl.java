@@ -69,5 +69,4 @@ class GoodsServcieImpl implements GoodsServcie {
         return i;
     }
 
-
 }

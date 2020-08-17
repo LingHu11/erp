@@ -90,7 +90,10 @@
                             <div class="form-group form-inline">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default" title="添加赠品转商品请求" id="addApproval"><i
-                                            class="fa fa-file-o"></i>添加赠品转商品请求
+                                            class="fa fa-file-o"></i>添加商品转赠品请求
+                                    </button>
+                                    <button type="button" class="btn btn-default" title="添加渠道分类" id="exportExcel"><i
+                                            class="fa fa-file-o"></i>导出所有申请记录
                                     </button>
                                 </div>
                             </div>
@@ -133,18 +136,20 @@
                                     </c:if>
                                         <%--                                    <td><fmt:formatDate value="${good.ctime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>--%>
                                     <td class="text-center">
+
                                         <button type="button" class="btn bg-olive btn-xs"
-                                                onclick="location.href='${pageContext.request.contextPath}/goodstocompli/findById?id=${goodstocompli.id}'">
-                                            审核跟踪
+                                                onclick="location.href='${pageContext.request.contextPath}/goodstocompli/findById?id=${goodsToCompli.id}&whichpage=0'">
+                                            详情
                                         </button>
+
                                         <c:if test="${goodsToCompli.approvalStatus=='未审核'||goodsToCompli.approvalStatus=='审核未通过'}">
                                         <button type="button" class="btn bg-olive btn-xs"
-                                                onclick="location.href='${pageContext.request.contextPath}/goodstocompli/findById?id=${goodstocompli.id}'">
+                                                onclick="location.href='${pageContext.request.contextPath}/goodstocompli/findById?id=${goodsToCompli.id}'">
                                             修改
                                         </button>
                                         </c:if>
                                         <button type="button" class="btn bg-olive btn-xs"
-                                                onclick="location.href='${pageContext.request.contextPath}/goodstocompli/deleteById?id=${goodstocompli.id}'">
+                                                onclick="location.href='${pageContext.request.contextPath}/goodstocompli/deleteById?id=${goodsToCompli.id}'">
                                             删除
                                         </button>
                                             <%--&uuser=${name}--%>
@@ -327,7 +332,10 @@
 
     //添加申请
     $('#addApproval').click(function () {
-        location.href = "${pageContext.request.contextPath}/goods/findAll?page=1&size=4"
+        location.href = "${pageContext.request.contextPath}/goods/findAll?page=1&size=4&whichpage=0"
+    })
+    $('#exportExcel').click(function(){
+        location.href="${pageContext.request.contextPath}/goodstocompli/exportExcel"
     })
 
     //改变页面显示的行数

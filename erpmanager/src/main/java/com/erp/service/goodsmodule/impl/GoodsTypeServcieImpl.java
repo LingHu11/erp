@@ -7,7 +7,10 @@ import com.erp.mapper.goodsmodule.GoodsBrandMapper;
 import com.erp.mapper.goodsmodule.GoodsTypeMapper;
 import com.erp.service.goodsmodule.GoodsServcie;
 import com.erp.service.goodsmodule.GoodsTypeServcie;
+import com.erp.utils.JedisClient;
+import com.erp.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,24 +20,38 @@ import java.util.List;
 public class GoodsTypeServcieImpl implements GoodsTypeServcie {
     @Autowired
     GoodsTypeMapper goodsTypeMapper;
+    @Autowired
+    JedisClient jedisClient;
+
+    @Value("${GOODS_PARENT_TYPE}")
+    String goodsParentType;
 
     @Override
     public List<GoodsType> findAllParent() {
-
-        GoodsTypeExample goodsTypeExample = new GoodsTypeExample();
-
-        GoodsTypeExample.Criteria criteria = goodsTypeExample.createCriteria();
-        criteria.andIsParentEqualTo(0);
-        List<GoodsType> list = goodsTypeMapper.selectByExample(goodsTypeExample);
+        List<GoodsType> list = null;
+//   通过key值去jedis中去取父类列表
+        String parentTypeList = jedisClient.get(goodsParentType);
+        if (parentTypeList == null) {
+            GoodsTypeExample goodsTypeExample = new GoodsTypeExample();
+            GoodsTypeExample.Criteria criteria = goodsTypeExample.createCriteria();
+            criteria.andIsParentEqualTo(0);
+            list = goodsTypeMapper.selectByExample(goodsTypeExample);
+            jedisClient.set(goodsParentType, JsonUtils.objectToJson(list));
+        } else {
+            list = JsonUtils.jsonToList(parentTypeList, GoodsType.class);
+        }
         return list;
     }
+
     @Override
     public List<GoodsType> findAllSon(Integer parentId) {
+        List<GoodsType> list = null;
         GoodsTypeExample goodsTypeExample = new GoodsTypeExample();
         GoodsTypeExample.Criteria criteria = goodsTypeExample.createCriteria();
         criteria.andParentIdEqualTo(parentId);
-        List<GoodsType> list = goodsTypeMapper.selectByExample(goodsTypeExample);
+        list = goodsTypeMapper.selectByExample(goodsTypeExample);
         return list;
+
     }
 
     @Override

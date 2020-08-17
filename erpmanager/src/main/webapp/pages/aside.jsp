@@ -62,8 +62,17 @@
 
                     </li>
                     <li id="role-manager">
-                        <a href="${pageContext.request.contextPath}/goodstocompli/findAll?page=1&size=4"> <i
-                                class="fa fa-circle-o"></i> 赠品管理 </a>
+                        <a href="#"> <i class="fa fa-circle-o"></i> <span>赠品管理</span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i> </span> </a>
+                        <ul class="treeview-menu" style="padding-left: 20px">
+                            <li id="">
+                                <a href="${pageContext.request.contextPath}/goodstocompli/findAll?page=1&size=4"> <i
+                                        class="fa fa-circle-o"></i> <span>商品转赠品管理</span></a>
+                            </li>
+                            <li id="">
+                                <a href="${pageContext.request.contextPath}/goodstocompli/findAllForBoss?page=1&size=4&choice=1"> <i
+                                        class="fa fa-circle-o"></i> <span>商品转赠品审核</span></a>
+                            </li>
+                        </ul>
                     </li>
                     <li id="permission-setting">
                         <a href="${pageContext.request.contextPath}/permission/findAll.do?page=1&size=4"> <i

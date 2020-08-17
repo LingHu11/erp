@@ -93,11 +93,12 @@
         <!-- 内容头部 /-->
 
         <form action="${pageContext.request.contextPath}/goods/update"
-              method="post">
+              method="post" name="form" onsubmit="return beforeSubmit(this)">
             <input class="form-control" name="id" type="hidden" value="${goods.id}">
             <!-- 正文区域 -->
             <section class="content"> <!--产品信息-->
-
+                <%--更新--%>
+                <c:if test="${page.equals('update')}">
                 <div class="panel panel-default">
                     <div class="panel-heading">商品信息</div>
                     <div class="row data-type">
@@ -172,7 +173,84 @@
                             onclick="history.back(-1);">返回
                     </button>
                 </div>
-                <!--工具栏/--> </section>
+                </c:if>
+                <%--更新--%>
+                <%--详情--%>
+                <c:if test="${page.equals('detail')}">
+                <div class="panel panel-default">
+                    <div class="panel-heading">商品信息</div>
+                    <div class="row data-type">
+                        <div class="col-md-2 title">商品数量</div>
+                        <div class="col-md-4 data">
+                            <input type="text" class="form-control" name="number"
+                                    value="${goods.number}" readonly="readonly">
+                        </div>
+
+                        <div class="col-md-2 title">商品名称</div>
+                        <div class="col-md-4 data">
+                            <input type="text" class="form-control" name="name"
+                                    value="${goods.name}" readonly="readonly">
+                        </div>
+
+                        <div class="col-md-2 title">一级分类</div>
+                        <div class="col-md-4 data">
+                            <input type="text" class="form-control" name="categoryName1"
+                                  value="${goodsType.categoryName}" readonly="readonly">
+                        </div>
+                        <div class="col-md-2 title">二级分类</div>
+                        <div class="col-md-4 data">
+                            <input type="text" class="form-control" name="categoryName2"
+                                  value="${goods.categoryName}" readonly="readonly">
+                        </div>
+
+                        <div class="col-md-2 title">品牌名称</div>
+                        <div class="col-md-4 data">
+                            <input type="text" class="form-control" name="brandName"
+                                   value="${goods.brandName}" readonly="readonly">
+                        </div>
+
+                        <div class="col-md-2 title">商品型号</div>
+                        <div class="col-md-4 data">
+                            <input type="text" class="form-control" name="model"
+                                   value="${goods.model}" readonly="readonly">
+                        </div>
+
+                        <div class="col-md-2 title">购买价格</div>
+                        <div class="col-md-4 data">
+                            <input type="text" class="form-control" name="purchasePrice"
+                                    value="${goods.purchasePrice}" readonly="readonly">
+                        </div>
+
+                        <div class="col-md-2 title">购买部门</div>
+                        <div class="col-md-4 data">
+                            <input type="text" class="form-control" name="purchaseDept"
+                                  value="${goods.purchaseDept}" readonly="readonly">
+                        </div>
+
+                        <div class="col-md-2 title">市场价格</div>
+                        <div class="col-md-4 data">
+                            <input type="text" class="form-control" name="marketPrice"
+                                    value="${goods.mallPrice}" readonly="readonly">
+                        </div>
+
+                        <div class="col-md-2 title">商城价格</div>
+                        <div class="col-md-4 data">
+                            <input type="text" class="form-control" name="mallPrice"
+                                   value="${goods.mallPrice}" readonly="readonly">
+                        </div>
+
+                    </div>
+                </div>
+                <!--订单信息/--> <!--工具栏-->
+                <div class="box-tools text-center">
+                    <button type="button" class="btn bg-default"
+                            onclick="history.back(-1);">返回
+                    </button>
+                </div>
+                </c:if>
+                <%--详情--%>
+                <!--工具栏/-->
+            </section>
             <!-- 正文区域 /-->
         </form>
     </div>
@@ -342,9 +420,9 @@
     //触发二级选项框
     $('#categoryName1').change(function () {
         var parentId = $('#categoryName1').val();
-        console.log(parentId+"1");
+        console.log(parentId + "1");
         var option;
-        if (parentId!=-1){
+        if (parentId != -1) {
             $.ajax({
                 url: '${pageContext.request.contextPath}/goodsType/findAllSon?parentId=' + parentId,
                 dateType: 'json',
@@ -358,12 +436,45 @@
                     }
                 }
             })
-        }else{
+        } else {
             $('#categoryName2').empty();
             option = $('<option value="${goods.categoryName}">${goods.categoryName}(当前商品二级分类名称)</option>');
             $('#categoryName2').append(option);
         }
     })
+    function beforeSubmit(form){
+        if(form.number.value==''){
+            alert('请填写数量！');
+            form.number.focus();
+            return false;
+        }
+        if(form.name.value==''){
+            alert('请填写商品名称！');
+            form.name.focus();
+            return false;
+        }
+        if(form.model.value==''){
+            alert('请填写商品型号');
+            form.model.focus();
+            return false;
+        }
+        if(form.purchasePrice.value==''){
+            alert('请填写购买价格');
+            form.purchasePrice.focus();
+            return false;
+        }
+        if(form.marketPrice.value==''){
+            alert('请填写市场价格');
+            form.marketPrice.focus();
+            return false;
+        }
+        if(form.mallPrice.value==''){
+            alert('请填写商城价格');
+            form.mallPrice.focus();
+            return false;
+        }
+        return true;
+    }
 
 </script>
 

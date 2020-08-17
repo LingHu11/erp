@@ -350,4 +350,13 @@
       perserve2 = #{perserve2,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <update id="updateForNoCheck" parameterType="com.erp.domain.goodsmodule.GoodsToComplimentray">
+    UPDATE goods_to_complimentray SET convert_number = #{convertNumber} WHERE ID = #{id}
+  </update>
+
+  <update id="updateForDenied" parameterType="com.erp.domain.goodsmodule.GoodsToComplimentray">
+    UPDATE goods_to_complimentray SET approval_time = null , perserve1 = null ,approval_status = #{approvalStatus},convert_number = #{convertNumber} WHERE ID = #{id}
+  </update>
+
 </mapper>

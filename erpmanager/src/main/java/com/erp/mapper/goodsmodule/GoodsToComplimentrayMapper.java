@@ -28,4 +28,8 @@ public interface GoodsToComplimentrayMapper {
     int updateByPrimaryKeySelective(GoodsToComplimentray record);
 
     int updateByPrimaryKey(GoodsToComplimentray record);
+    //自己写的
+    int updateForDenied(GoodsToComplimentray record);
+
+    Integer updateForNoCheck(GoodsToComplimentray goodsToComplimentray);
 }
