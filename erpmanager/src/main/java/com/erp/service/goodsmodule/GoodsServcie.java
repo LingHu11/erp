@@ -10,4 +10,6 @@ public interface GoodsServcie {
     List<Goods> findAll(Integer page, Integer size,Goods good);
 
     Integer insert(Goods good);
+
+    void reduceById(Integer id,Integer number);
 }
