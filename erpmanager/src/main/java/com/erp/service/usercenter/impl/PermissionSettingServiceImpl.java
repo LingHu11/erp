@@ -1,13 +1,13 @@
 package com.erp.service.usercenter.impl;
 
 import com.erp.domain.usercenter.MgtPermission;
-import com.erp.domain.usercenter.MgtRole;
 import com.erp.mapper.usercenter.MgtPermissionMapper;
 import com.erp.service.usercenter.PermissionSettingService;
 import com.erp.utils.EmbedIdAndTime;
 import com.erp.utils.Result;
 import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
@@ -20,6 +20,7 @@ public class PermissionSettingServiceImpl implements PermissionSettingService {
     private MgtPermissionMapper permissionMapper;
 
     @Override
+    @Transactional(rollbackFor = {Exception.class})
     public Result registerPermission(MgtPermission mgtPermission) {
         MgtPermission name = permissionMapper.getPermissionByPermissionName(mgtPermission.getName());
         if (StringUtils.isEmpty(name)){
@@ -45,6 +46,7 @@ public class PermissionSettingServiceImpl implements PermissionSettingService {
     }
 
     @Override
+    @Transactional(rollbackFor = {Exception.class})
     public Result deletePermissionById(String id) {
         int i = permissionMapper.deletePermissionById(id);
         return i>0?new Result("200" ,"删除成功"):new Result("201" ,"删除失败，请重试");
@@ -52,9 +54,15 @@ public class PermissionSettingServiceImpl implements PermissionSettingService {
     }
 
     @Override
+    @Transactional(rollbackFor = {Exception.class})
     public Result updatePermission(MgtPermission mgtPermission) {
-        int i = permissionMapper.updatePermission(mgtPermission);
-        return i>0?new Result("200" ,"权限信息更新成功"):new Result("201" ,"更新失败，请重试");
+        MgtPermission name = permissionMapper.getPermissionByPermissionName(mgtPermission.getName());
+        if (StringUtils.isEmpty(name)) {
+            int i = permissionMapper.updatePermission(mgtPermission);
+            return i>0?new Result("200" ,"权限信息更新成功"):new Result("201" ,"更新失败，请重试");
+        }else {
+            return new Result("200","权限名称重复");
+        }
     }
 
     @Override
@@ -63,4 +71,18 @@ public class PermissionSettingServiceImpl implements PermissionSettingService {
         List<MgtPermission> permissions = permissionMapper.getPermissionByCondition(null);
         return permissions;
     }
+
+//    @Override
+//    public List<MgtPermission> loadMenu(String username) {
+//        String roleId = permissionMapper.getRoleByUserName(username);
+//        List<MgtPermission> listPmn = permissionMapper.loadMenu(roleId);
+//        return listPmn;
+//    }
+//
+//    @Override
+//    public List<MgtPermission> loadMenu(String username, String path) {
+//        String roleId = permissionMapper.getRoleByUserName(username);
+//        List<MgtPermission> listPmn = permissionMapper.loadMenuTwo(roleId ,path);
+//        return listPmn;
+//    }
 }

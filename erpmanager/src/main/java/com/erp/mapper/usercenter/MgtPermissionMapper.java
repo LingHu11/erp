@@ -33,4 +33,8 @@ public interface MgtPermissionMapper {
     // 更新权限内容
     int updatePermission(MgtPermission mgtPermission);
 
+//    List<MgtPermission> loadMenu(@Param("rid") String rid);
+//
+//    List<MgtPermission> loadMenuTwo(@Param("rid") String rid ,@Param("path") String path);
+
 }

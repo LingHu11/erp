@@ -1,7 +1,6 @@
 package com.erp.controller.usercenter;
 
 import com.erp.domain.usercenter.MgtPermission;
-import com.erp.domain.usercenter.MgtRole;
 import com.erp.service.usercenter.PermissionSettingService;
 import com.erp.utils.Result;
 import com.github.pagehelper.PageInfo;
@@ -11,10 +10,12 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @Controller
-@RequestMapping("permission")
+@RequestMapping("/permission")
+@RolesAllowed({"pmnManager","admin"})
 public class PermissionSettingController {
 
     @Resource
@@ -25,7 +26,7 @@ public class PermissionSettingController {
         Result result = permissionSettingService.registerPermission(permission);
         if (result.getCode().equals("200")) {
             model.addAttribute("result",result);
-            return "/usercenter/pmnregister";
+            return "/usercenter/pmnl";
         } else {
             // TODO 待完善，返回错误页面
             return null;
@@ -37,7 +38,7 @@ public class PermissionSettingController {
         List<MgtPermission> permissions = permissionSettingService.getPermissionByCondition(permission);
         if (StringUtils.isEmpty(permissions)) {
             model.addAttribute("permissions",permissions);
-            return "/usercenter/pmnlist";
+            return "redirect:list";
         } else {
             // TODO 待完善，返回错误页面
             return null;
@@ -57,7 +58,7 @@ public class PermissionSettingController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable String id , Model model) {
+    public String deletePermission(@PathVariable String id , Model model) {
         Result result = permissionSettingService.deletePermissionById(id);
         if (result.getCode().equals("200")) {
             model.addAttribute("result",result);
@@ -68,24 +69,24 @@ public class PermissionSettingController {
         }
     }
 
-    @GetMapping("/getuser/{id}")
-    public String getUser(@PathVariable String id, Model model){
+    @GetMapping("/getpmn/{id}")
+    public String getPermission(@PathVariable String id, Model model){
         MgtPermission permission = permissionSettingService.getPermissionById(id);
-        if (StringUtils.isEmpty(permission)) {
+        if (!StringUtils.isEmpty(permission)) {
             model.addAttribute("permission",permission);
-            return "/usercenter/pmndetail";
+            return "/usercenter/addpmn";
         } else {
             // TODO 待完善，返回错误页面
             return null;
         }
     }
 
-    @PostMapping("/updateuser")
-    public String updateUser(MgtPermission permission, Model model){
+    @PostMapping("/update")
+    public String updatePermission(MgtPermission permission, Model model){
         Result result = permissionSettingService.updatePermission(permission);
         if (result.getCode().equals("200")) {
             model.addAttribute("result",result);
-            return "/usercenter/pmnlist";
+            return "redirect:list";
         } else {
             // TODO 待完善，返回错误页面
             return null;

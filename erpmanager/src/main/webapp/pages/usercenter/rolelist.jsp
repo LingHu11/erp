@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -186,14 +187,14 @@
                                     <td>${role.roleCode}</td>
 
                                     <td>${role.remark}</td>
-                                    <td>${role.gmtCreate}</td>
+                                    <td><fmt:formatDate value="${role.gmtCreate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 
                                     <td class="text-center">
                                         <button type="button" class="btn bg-olive btn-xs"
                                                 onclick='location.href="${pageContext.request.contextPath}/role/getrole/${role.id}"'>编辑
                                         </button>
                                         <button type="button" class="btn bg-olive btn-xs"
-                                                onclick='location.href="all-travellog-review-list.html"'>查看评论
+                                                onclick='location.href="${pageContext.request.contextPath}/pages/usercenter/rolepermission.jsp?id=${role.id}"'>权限
                                         </button>
                                     </td>
                                 </tr>

@@ -1,6 +1,7 @@
 package com.erp.controller.usercenter;
 
 import com.erp.domain.usercenter.MgtRole;
+import com.erp.domain.usercenter.MgtUser;
 import com.erp.service.usercenter.RoleManagerService;
 import com.erp.utils.Result;
 import com.github.pagehelper.PageInfo;
@@ -10,10 +11,12 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @Controller
 @RequestMapping("/role")
+@RolesAllowed({"pmnManager","admin"})
 public class RoleManagerController {
 
     @Resource
@@ -54,6 +57,13 @@ public class RoleManagerController {
             return null;
         }
     }
+    @GetMapping("/rolelist")
+    @ResponseBody
+    public List<MgtRole> selectRoleList() {
+        List<MgtRole> roleList = roleService.getRoleByCondition(null);
+        return roleList;
+    }
+
 
     @PostMapping("/delete")
     public String deleteRole(String[] ids , Model model) {

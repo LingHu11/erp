@@ -94,143 +94,149 @@
                     <!--tab头-->
                     <ul class="nav nav-tabs">
                         <li class="active">
-                            <a href="#tab-form" data-toggle="tab">表单</a>
+                            <a href="#tab-form" data-toggle="tab">
+                                <c:if test="${requestScope.id == null }">添加用户</c:if>
+                                <c:if test="${requestScope.id != null }">修改用户</c:if>
+                            </a>
                         </li>
                     </ul>
                     <!--tab头/-->
 
                     <!--tab内容-->
                     <div class="tab-content">
-
-                        <!--表单内容-->
-                        <div class="tab-pane active" id="tab-form">
-                            <div class="row data-type">
-                                <div class="col-md-2 title">ID</div>
-                                <div class="col-md-10 data text">
-                                    xxxxx
-                                </div>
-
-                                <div class="col-md-2 title">标题</div>
-                                <div class="col-md-10 data">
-                                    <input type="text" class="form-control" placeholder="标题" value="">
-                                </div>
-
-                                <div class="col-md-2 title">来源</div>
-                                <div class="col-md-10 data">
-                                    <input type="text" class="form-control" placeholder="来源" value="">
-                                </div>
-
-                                <div class="col-md-2 title">作者</div>
-                                <div class="col-md-10 data">
-                                    <input type="text" class="form-control" placeholder="作者" value="">
-                                </div>
-
-                                <div class="col-md-2 title">状态</div>
-                                <div class="col-md-10 data line-height36">
-                                    <div class="form-group form-inline">
-                                        <div class="checkbox"><label><input type="checkbox" value="1"> 优质</label></div>
-                                        <div class="checkbox"><label><input type="checkbox" value="2"> 精华</label></div>
-                                        <div class="checkbox"><label><input type="checkbox" value="3"> 实用</label></div>
-                                        <div class="checkbox"><label><input type="checkbox" value="4"> 审核</label></div>
-                                        <div class="checkbox"><label><input type="checkbox" value="5"> 推荐</label></div>
-                                        <div class="checkbox"><label><input type="checkbox" value="6"> 固顶</label></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-2 title">收藏数</div>
-                                <div class="col-md-10 data">
-                                    <input type="text" class="form-control" placeholder="收藏数" value="">
-                                </div>
-
-                                <div class="col-md-2 title">点赞数</div>
-                                <div class="col-md-10 data">
-                                    <input type="text" class="form-control" placeholder="点赞数" value="">
-                                </div>
-
-                                <div class="col-md-2 title">排序</div>
-                                <div class="col-md-10 data">
-                                    <input type="text" class="form-control" placeholder="排序" value="">
-                                </div>
-
-                            </div>
-
-
-
-                            <!--游记-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">游记</div>
-
-                                <button type="button" class="btn bg-maroon btn-flat margin" id="btn-dayadd">添加游记</button>
-
-                                <div id="dayslist" class="panel-body">
-
-                                    <div class="box box-success">
-                                        <div class="box-header with-border">
-                                            <h3 class="box-title">第xx天游记</h3>
-
-                                            <div class="box-tools pull-right">
-                                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                                            </div>
+                        <c:if test="${requestScope.id == null }">
+                        <form action="${pageContext.request.contextPath}/user/register" method="post" name="form"
+                              onSubmit="return beforeSubmit(this);">
+                            </c:if>
+                            <c:if test="${requestScope.id != null }">
+                            <form action="${pageContext.request.contextPath}/user/update" method="post" name="form"
+                                  onSubmit="return beforeSubmit(this);">
+                                </c:if>
+                                <c:if test="${requestScope.id != null }">
+                                    <input type="hidden" name="id" value="${user.id}">
+                                </c:if>
+                                <!--表单内容-->
+                                <div class="tab-pane active" id="tab-form">
+                                    <div class="row data-type">
+                                        <div class="col-md-2 title">用户姓名</div>
+                                        <div class="col-md-10 data">
+                                            <c:if test="${requestScope.id == null }">
+                                                <input type="text" class="form-control" placeholder="姓名"
+                                                       name="realName">
+                                            </c:if>
+                                            <c:if test="${requestScope.id != null }">
+                                                <input type="text" class="form-control" placeholder="姓名"
+                                                       name="realName" value="${user.realName}">
+                                            </c:if>
                                         </div>
-                                        <div class="box-body">
-                                            <input type="text" class="form-control" placeholder="第xx天游记标题" value=""><br>
-                                            <textarea class="textarea" placeholder="第xx天游记正文" style="width: 100%; height: 265px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+
+                                        <div class="col-md-2 title">账号名称</div>
+                                        <div class="col-md-10 data">
+                                            <c:if test="${requestScope.id == null }">
+                                                <input type="text" class="form-control" placeholder="账号名称"
+                                                       name="username">
+                                            </c:if>
+                                            <c:if test="${requestScope.id != null }">
+                                                <input type="text" class="form-control" placeholder="账号名称"
+                                                       name="username" value="${user.username}">
+                                            </c:if>
+                                        </div>
+
+                                        <div class="col-md-2 title">部门名称</div>
+                                        <div class="col-md-10 data">
+                                            <c:if test="${requestScope.id == null }">
+                                                <select class="col-xs-2 form-control" id="departName" name="departId" value="" >
+                                                    <option value="0" >  无  </option>
+                                                </select>
+                                            </c:if>
+                                            <c:if test="${requestScope.id != null }">
+                                                <select class="col-xs-2 form-control" id="departName" name="departId" value="${user.departId}" >
+                                                    <option value="0" >  无  </option>
+                                                </select>
+                                            </c:if>
+                                        </div>
+
+                                        <div class="col-md-2 title">职位</div>
+                                        <div class="col-md-10 data">
+                                            <c:if test="${requestScope.id == null }">
+                                                <select class="col-xs-2 form-control" id="positionName" name="positionId" value="" >
+                                                    <option value="0" >  无  </option>
+                                                </select>
+                                            </c:if>
+                                            <c:if test="${requestScope.id != null }">
+                                                <select class="col-xs-2 form-control" id="positionName" name="positionId" value="${user.positionId}" >
+                                                    <option value="0" >  无  </option>
+                                                </select>
+                                            </c:if>
+                                        </div>
+
+                                        <div class="col-md-2 title">所属上级</div>
+                                        <div class="col-md-10 data">
+                                            <c:if test="${requestScope.id == null }">
+                                                <input type="text" class="form-control" placeholder="所属上级"
+                                                       name="superId">
+                                            </c:if>
+                                            <c:if test="${requestScope.id != null }">
+                                                <input type="text" class="form-control" placeholder="所属上级"
+                                                       name="superId" value="${user.superId}">
+                                            </c:if>
+                                        </div>
+
+                                        <div class="col-md-2 title">手机号</div>
+                                        <div class="col-md-10 data">
+                                            <c:if test="${requestScope.id == null }">
+                                                <input type="text" class="form-control" placeholder="手机号"
+                                                       name="phone">
+                                            </c:if>
+                                            <c:if test="${requestScope.id != null }">
+                                                <input type="text" class="form-control" placeholder="手机号"
+                                                       name="phone" value="${user.phone}">
+                                            </c:if>
+                                        </div>
+
+                                        <div class="col-md-2 title">邮箱</div>
+                                        <div class="col-md-10 data">
+                                            <c:if test="${requestScope.id == null }">
+                                                <input type="text" class="form-control" placeholder="邮箱"
+                                                       name="email">
+                                            </c:if>
+                                            <c:if test="${requestScope.id != null }">
+                                                <input type="text" class="form-control" placeholder="邮箱"
+                                                       name="email" value="${user.email}">
+                                            </c:if>
+                                        </div>
+
+                                        <div class="col-md-2 title">头像</div>
+                                        <div class="col-md-10 data">
+                                            <c:if test="${requestScope.id == null }">
+                                                <input type="text" class="form-control" placeholder="头像"
+                                                       name="avatar">
+                                            </c:if>
+                                            <c:if test="${requestScope.id != null }">
+                                                <input type="text" class="form-control" placeholder="头像"
+                                                       name="avatar" value="${user.avatar}">
+                                            </c:if>
                                         </div>
                                     </div>
+                                    <!--工具栏-->
+                                    <div class="box-tools text-center">
+                                        <button type="submit" class="btn bg-maroon">保存</button>
+                                        <button type="button" class="btn bg-default" onclick="history.back(-1);">
+                                            返回
+                                        </button>
+                                    </div>
+                                    <!--工具栏/-->
 
                                 </div>
-                            </div>
-                            <!--游记/-->
-
-
-                            <!--工具栏-->
-                            <div class="box-tools text-center">
-                                <button type="button" class="btn bg-maroon">保存</button>
-                                <button type="button" class="btn bg-default" onclick="history.back(-1);">返回</button>
-                            </div>
-                            <!--工具栏/-->
-
-
-
-                            <!--游记输入模板-->
-                            <div id="day-tpl" style="display:none">
-                                <div class="box box-success">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title">第xx天游记</h3>
-
-                                        <div class="box-tools pull-right">
-                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="box-body">
-                                        <input type="text" class="form-control" placeholder="第xx天游记标题" value=""><br>
-                                        <textarea class="" placeholder="第xx天游记正文" style="width: 100%; height: 265px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--游记输入模板/-->
-                        </div>
-                        <!--表单内容/-->
-
+                                <!--表单内容/-->
+                            </form>
                     </div>
                     <!--tab内容/-->
-
                 </div>
                 <!--tab页/-->
-
-
-                <!-- .box-footer
-    <div class="box-footer"></div>
-    -->
-                <!-- /.box-footer-->
-
             </div>
-
         </section>
         <!-- 正文区域 /-->
-
     </div>
     <!-- 内容区域 /-->
     <!-- 底部导航 -->
@@ -286,7 +292,7 @@
 <script src="${pageContext.request.contextPath}/plugins/ionslider/ion.rangeSlider.min.js"></script>
 <script src="${pageContext.request.contextPath}/plugins/bootstrap-slider/bootstrap-slider.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // 选择框
         $(".select2").select2();
 
@@ -305,7 +311,7 @@
         }
     }
 
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         // 激活导航位置
         setSidebarActive("travellog-manage");
@@ -316,7 +322,7 @@
             increaseArea: '20%'
         });
         // 全选操作
-        $("#selall").click(function() {
+        $("#selall").click(function () {
             var clicks = $(this).is(':checked');
             if (!clicks) {
                 $("#dataList td input[type='checkbox']").iCheck("uncheck");
@@ -328,6 +334,57 @@
     });
 
     /* ========================自己添加的js============================  */
+    function beforeSubmit(form) {
+        if (form.roleName.value == '') {
+            alert('角色名不能为空！');
+            form.roleName.focus();
+            return false;
+        }
+        if (form.roleCode.value == '') {
+            alert('角色编码不能为空！');
+            form.roleCode.focus();
+            return false;
+        }
+        if (form.remark.value == '') {
+            alert('备注信息不能为空');
+            form.remark.focus();
+            return false;
+        }
+        return true;
+    }
+
+    $(document).ready(function () {
+        $.ajax({
+            url: '${pageContext.request.contextPath}/depart/list',
+            dataType: 'json',//接收到的数据类型转换为json
+            success: function (data) {
+                var option;
+                for (var i = 0; i < data.length; i++) {
+                    option = $("<option></option>");
+                    option.val(data[i].id);
+                    option.text(data[i].departname);
+                    $('#departName').append(option);
+                }
+                $('#departName').find('option[value=${user.departId}]').prop('selected', true);
+            }
+        })
+
+        $.ajax({
+            url: '${pageContext.request.contextPath}/position/list',
+            dataType: 'json',//接收到的数据类型转换为json
+            success: function (data) {
+                var option;
+                for (var i = 0; i < data.length; i++) {
+                    option = $("<option></option>");
+                    option.val(data[i].id);
+                    option.text(data[i].positionname);
+                    $('#positionName').append(option);
+                }
+                $('#positionName').find('option[value=${user.positionId}]').prop('selected', true);
+            }
+        })
+
+    });
 </script>
 </body>
 </html>

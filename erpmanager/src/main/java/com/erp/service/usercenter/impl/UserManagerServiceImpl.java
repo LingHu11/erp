@@ -112,4 +112,10 @@ public class UserManagerServiceImpl implements UserManagerService {
         List<MgtUser> users = userMapper.getUserByCondition(null);
         return users;
     }
+
+    @Override
+    public MgtUser getUserByName(String username) {
+        MgtUser mgtUser = userMapper.getUserByName(username);
+        return mgtUser;
+    }
 }

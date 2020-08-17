@@ -2,7 +2,6 @@ package com.erp.domain.goodsmodule;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.metadata.BaseRowModel;
-import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Date;

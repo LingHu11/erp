@@ -45,7 +45,7 @@
 
     <div class="register-box-body">
         <div>
-            <p style="text-align: left">我有账号，现在就去<a href="login.jsp" style="color: blue">登录</a></p>
+            <p style="text-align: left">我有账号，现在就去<a href="../../login.jsp" style="color: blue">登录</a></p>
         </div>
 
         <form action="${pageContext.request.contextPath}/register" method="post" name="form" onSubmit="return beforeSubmit(this);">

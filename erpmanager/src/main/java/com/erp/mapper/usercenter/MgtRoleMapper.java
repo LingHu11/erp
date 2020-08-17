@@ -32,4 +32,7 @@ public interface MgtRoleMapper {
 
     // 更新用户
     int updateRole(MgtRole mgtRole);
+
+    //通过用户姓名获取角色
+    List<MgtRole> getRoleByUserName(String username);
 }

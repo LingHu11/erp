@@ -59,4 +59,11 @@
         </where>
     </select>
 
+    <select id="getRoleByUserName" parameterType="string" resultMap="BaseResultMap">
+        SELECT * from mgt_user mu
+					LEFT JOIN mgt_user_role mur ON mu.id = mur.user_id
+					LEFT JOIN mgt_role mr ON mur.role_id=mr.id
+					WHERE mu.username=#{username};
+    </select>
+
 </mapper>

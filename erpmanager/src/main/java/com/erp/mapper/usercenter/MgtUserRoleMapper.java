@@ -1,5 +1,7 @@
 package com.erp.mapper.usercenter;
 
+import com.erp.domain.usercenter.MgtUserRole;
+
 /**
  * <p>
  *  Mapper 接口
@@ -10,4 +12,5 @@ package com.erp.mapper.usercenter;
  */
 public interface MgtUserRoleMapper {
 
+    int addUserRole(MgtUserRole userRole);
 }

@@ -64,4 +64,10 @@ public class RoleManagerServiceImpl implements RoleManagerService {
         List<MgtRole> roles = roleMapper.getRoleByCondition(null);
         return roles;
     }
+
+    @Override
+    public List<MgtRole> getRoleByUserName(String username) {
+        List<MgtRole> roleList = roleMapper.getRoleByUserName(username);
+        return roleList;
+    }
 }

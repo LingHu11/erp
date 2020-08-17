@@ -30,10 +30,10 @@
         UPDATE mgt_permission
         <set>
             <if test="pid != null">pid=#{pid},</if>
-            <if test="name != null">name=#{name},</if>
-            <if test="type != null">type=#{type}</if>
-            <if test="permissionValue != null">permission_value=#{permissionValue}</if>
-            <if test="path != null">path=#{path}</if>
+            <if test="name != null">`name`=#{name},</if>
+            <if test="type != null">`type`=#{type},</if>
+            <if test="permissionValue != null">permission_value=#{permissionValue},</if>
+            <if test="path != null">path=#{path},</if>
             <if test="status != null">status=#{status}</if>
         </set>
         where id=#{id}
@@ -67,5 +67,23 @@
             </if>
         </where>
     </select>
+
+    <select id="loadMenu" parameterType="string" resultMap= "BaseResultMap">
+        SELECT mp.id,mp.pid,mp.`name`,mp.permission_value,mp.type,mp.path,mp.`status`,mp.gmt_create
+            from mgt_role mr
+                LEFT JOIN mgt_role_permission mrp on mr.id = mrp.role_id
+                LEFT JOIN mgt_permission mp ON mrp.permission_id=mp.id
+        WHERE mr.id=#{rid};
+    </select>
+
+    <select id="loadMenuTwo" parameterType="string" resultMap= "BaseResultMap">
+        SELECT mp.id,mp.pid,mp.`name`,mp.permission_value,mp.type,mp.path,mp.`status`,mp.gmt_create
+            from mgt_role mr
+                LEFT JOIN mgt_role_permission mrp on mr.id = mrp.role_id
+                LEFT JOIN mgt_permission mp ON mrp.permission_id=mp.id
+        WHERE mr.id=#{rid} and mr.path=#{path};
+    </select>
+
+
 
 </mapper>

@@ -21,4 +21,8 @@ public interface PermissionSettingService {
     Result updatePermission(MgtPermission mgtPermission);
 
     List<MgtPermission> getPermissionList(Integer page, Integer size);
+
+//    List<MgtPermission> loadMenu(String username);
+//
+//    List<MgtPermission> loadMenu(String username ,String path);
 }

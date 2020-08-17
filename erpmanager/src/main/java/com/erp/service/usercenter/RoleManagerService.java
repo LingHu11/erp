@@ -22,4 +22,7 @@ public interface RoleManagerService {
     Result updateRole(MgtRole mgtRole);
 
     List<MgtRole> getRoleList(Integer page, Integer size);
+
+    //通过用户姓名获取角色
+    List<MgtRole> getRoleByUserName(String username);
 }

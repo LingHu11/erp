@@ -20,4 +20,6 @@ public interface UserManagerService {
     Result updateUser(MgtUser mgtUser) throws Exception;
 
     List<MgtUser> selectList(Integer page, Integer size);
+
+    MgtUser getUserByName(String username);
 }

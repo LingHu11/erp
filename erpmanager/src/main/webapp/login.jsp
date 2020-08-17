@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,11 +22,11 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <link rel="stylesheet" href="../../plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../plugins/ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" href="../../plugins/adminLTE/css/AdminLTE.css">
-    <link rel="stylesheet" href="../../plugins/iCheck/square/blue.css">
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="plugins/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="plugins/iCheck/square/blue.css">
 </head>
 
 <body class="hold-transition login-page" style="background-image: url('/img/registerbj.jpg')">
@@ -72,7 +71,7 @@
         <!-- /.social-auth-links -->
         <div style="margin-bottom: 30px">
             <a href="#" style="float: left">忘记密码</a>
-            <a href="register.jsp" style="float: right"
+            <a href="pages/usercenter/register.jsp" style="float: right"
                class="text-center">新用户注册</a>
         </div>
 
@@ -84,9 +83,9 @@
 <!-- jQuery 2.2.3 -->
 <!-- Bootstrap 3.3.6 -->
 <!-- iCheck -->
-<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
-<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
-<script src="../../plugins/iCheck/icheck.min.js"></script>
+<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="plugins/iCheck/icheck.min.js"></script>
 <script>
     $(function () {
         $('input').iCheck({

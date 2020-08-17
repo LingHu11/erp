@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -119,7 +120,7 @@
                                     <div class="form-group form-inline">
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-default" title="新建"
-                                                    onclick='location.href="${pageContext.request.contextPath}/pages/usercenter/addpermission.jsp"'><i
+                                                    onclick='location.href="${pageContext.request.contextPath}/pages/usercenter/addpmn.jsp"'><i
                                                     class="fa fa-file-o"></i> 新建
                                             </button>
                                             <button type="button" class="btn btn-default" title="删除"
@@ -169,11 +170,11 @@
                                 <td>${permission.permissionValue}</td>
                                 <td>${permission.path}</td>
                                 <td>${permission.status}</td>
-                                <td>${permission.gmtCreate}</td>
+                                <td><fmt:formatDate value="${permission.gmtCreate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 
                                 <td class="text-center">
                                     <button type="button" class="btn bg-olive btn-xs"
-                                            onclick='location.href="all-travellog-manage-edit.html"'>编辑
+                                            onclick='location.href="${pageContext.request.contextPath}/permission/getpmn/${permission.id}"'>编辑
                                     </button>
                                     <button type="button" class="btn bg-olive btn-xs"
                                             onclick='location.href="all-travellog-review-list.html"'>查看评论

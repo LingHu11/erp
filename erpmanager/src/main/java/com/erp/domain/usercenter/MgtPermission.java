@@ -2,6 +2,8 @@ package com.erp.domain.usercenter;
 
 import java.util.Date;
 import java.io.Serializable;
+import java.util.List;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -51,5 +53,10 @@ public class MgtPermission implements Serializable {
     @ApiModelProperty(value = "更新时间")
     private Date gmtModified;
 
+    //================ 做树用的参数 ======================
+    //树的层级
+    private int level;
+    //树的下级
+    private List<MgtPermission> children;
 
 }

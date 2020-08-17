@@ -2,4 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.erp.mapper.usercenter.MgtRolePermissionMapper">
 
+    <select id="getPmnList" parameterType="string" resultType="com.erp.domain.usercenter.ATreeMenu">
+        SELECT mp.id,mp.pid,mp.`name` title FROM mgt_permission mp
+        <where>
+            <if test="pid != null">
+                pid = #{pid}
+            </if>
+        </where>
+    </select>
+
+    <insert id="addpmn">
+        INSERT INTO mgt_role_permission(id,role_id,permission_id) VALUES (#{id},#{rid},#{pmnId})
+    </insert>
+
+    <delete id="deleteAllpmn">
+        DELETE FROM mgt_role_permission WHERE role_id = #{rid}
+    </delete>
 </mapper>

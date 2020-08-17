@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -94,7 +95,6 @@
                           method="get">
                         <div class="box-body">
                             <div class="row">
-                                <%--                                    <input type="text" value="1" name="page" hidden="hidden">--%>
                                 <%--                                    <input type="text" value="4" name="size" hidden="hidden">--%>
                                 <div class="col-xs-2">
                                     <input type="text" class="form-control" placeholder="商品名称" id="name"
@@ -169,14 +169,14 @@
                                 <td>${user.positionId}</td>
                                 <td>${user.phone}</td>
                                 <td>${user.email}</td>
-                                <td>${user.gmtCreate}</td>
+                                <td><fmt:formatDate value="${user.gmtCreate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 
                                 <td class="text-center">
                                     <button type="button" class="btn bg-olive btn-xs"
-                                            onclick='location.href="all-travellog-manage-edit.html"'>编辑
+                                            onclick='location.href="${pageContext.request.contextPath}/user/getuser/${user.id}"'>修改
                                     </button>
                                     <button type="button" class="btn bg-olive btn-xs"
-                                            onclick='location.href="all-travellog-review-list.html"'>查看评论
+                                            onclick='location.href="${pageContext.request.contextPath}/pages/usercenter/roleuser.jsp?id=${user.id}&realName=${user.realName}"'>角色
                                     </button>
                                 </td>
                             </tr>
