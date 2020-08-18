@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.mapper.aftermodule.AReturnStorageMapper">
+  <resultMap id="BaseResultMap" type="com.erp.domain.aftermodule.AReturnStorage">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="ex_id" jdbcType="CHAR" property="exId" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="maker" jdbcType="VARCHAR" property="maker" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="goods_id" jdbcType="CHAR" property="goodsId" />
+    <result column="goods_brand" jdbcType="VARCHAR" property="goodsBrand" />
+    <result column="goods_imei" jdbcType="CHAR" property="goodsImei" />
+    <result column="goods_type" jdbcType="VARCHAR" property="goodsType" />
+    <result column="goods_color" jdbcType="VARCHAR" property="goodsColor" />
+    <result column="status_return" jdbcType="VARCHAR" property="statusReturn" />
+    <result column="inbound_id" jdbcType="CHAR" property="inboundId" />
+    <result column="configuration" jdbcType="VARCHAR" property="configuration" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="appearance" jdbcType="VARCHAR" property="appearance" />
+    <result column="auditor" jdbcType="VARCHAR" property="auditor" />
+    <result column="opinion_audit" jdbcType="VARCHAR" property="opinionAudit" />
+    <result column="audit_status" jdbcType="VARCHAR" property="auditStatus" />
+    <result column="gmt_audit" jdbcType="TIMESTAMP" property="gmtAudit" />
+    <result column="doc_status" jdbcType="INTEGER" property="docStatus" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, ex_id, type, maker, gmt_create, department, goods_id, goods_brand, goods_imei, 
+    goods_type, goods_color, status_return, inbound_id, configuration, reason, appearance, 
+    auditor, opinion_audit, audit_status, gmt_audit, doc_status, remark
+  </sql>
+  <select id="selectByExample" parameterType="com.erp.domain.aftermodule.AReturnStorageExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from a_return_storage
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from a_return_storage
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from a_return_storage
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.erp.domain.aftermodule.AReturnStorageExample">
+    delete from a_return_storage
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.erp.domain.aftermodule.AReturnStorage">
+    insert into a_return_storage (id, ex_id, type, maker, 
+      gmt_create, department, goods_id, 
+      goods_brand, goods_imei, goods_type, 
+      goods_color, status_return, inbound_id, 
+      configuration, reason, appearance, 
+      auditor, opinion_audit, audit_status, 
+      gmt_audit, doc_status, remark
+      )
+    values (#{id,jdbcType=CHAR}, #{exId,jdbcType=CHAR}, #{type,jdbcType=VARCHAR}, #{maker,jdbcType=VARCHAR}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{department,jdbcType=VARCHAR}, #{goodsId,jdbcType=CHAR}, 
+      #{goodsBrand,jdbcType=VARCHAR}, #{goodsImei,jdbcType=CHAR}, #{goodsType,jdbcType=VARCHAR}, 
+      #{goodsColor,jdbcType=VARCHAR}, #{statusReturn,jdbcType=VARCHAR}, #{inboundId,jdbcType=CHAR}, 
+      #{configuration,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{appearance,jdbcType=VARCHAR}, 
+      #{auditor,jdbcType=VARCHAR}, #{opinionAudit,jdbcType=VARCHAR}, #{auditStatus,jdbcType=VARCHAR}, 
+      #{gmtAudit,jdbcType=TIMESTAMP}, #{docStatus,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.erp.domain.aftermodule.AReturnStorage">
+    insert into a_return_storage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="exId != null">
+        ex_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="maker != null">
+        maker,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="department != null">
+        department,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsBrand != null">
+        goods_brand,
+      </if>
+      <if test="goodsImei != null">
+        goods_imei,
+      </if>
+      <if test="goodsType != null">
+        goods_type,
+      </if>
+      <if test="goodsColor != null">
+        goods_color,
+      </if>
+      <if test="statusReturn != null">
+        status_return,
+      </if>
+      <if test="inboundId != null">
+        inbound_id,
+      </if>
+      <if test="configuration != null">
+        configuration,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="appearance != null">
+        appearance,
+      </if>
+      <if test="auditor != null">
+        auditor,
+      </if>
+      <if test="opinionAudit != null">
+        opinion_audit,
+      </if>
+      <if test="auditStatus != null">
+        audit_status,
+      </if>
+      <if test="gmtAudit != null">
+        gmt_audit,
+      </if>
+      <if test="docStatus != null">
+        doc_status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="exId != null">
+        #{exId,jdbcType=CHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="maker != null">
+        #{maker,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=CHAR},
+      </if>
+      <if test="goodsBrand != null">
+        #{goodsBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImei != null">
+        #{goodsImei,jdbcType=CHAR},
+      </if>
+      <if test="goodsType != null">
+        #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsColor != null">
+        #{goodsColor,jdbcType=VARCHAR},
+      </if>
+      <if test="statusReturn != null">
+        #{statusReturn,jdbcType=VARCHAR},
+      </if>
+      <if test="inboundId != null">
+        #{inboundId,jdbcType=CHAR},
+      </if>
+      <if test="configuration != null">
+        #{configuration,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="appearance != null">
+        #{appearance,jdbcType=VARCHAR},
+      </if>
+      <if test="auditor != null">
+        #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="opinionAudit != null">
+        #{opinionAudit,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null">
+        #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtAudit != null">
+        #{gmtAudit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="docStatus != null">
+        #{docStatus,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.erp.domain.aftermodule.AReturnStorageExample" resultType="java.lang.Integer">
+    select count(*) from a_return_storage
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update a_return_storage
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.exId != null">
+        ex_id = #{record.exId,jdbcType=CHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maker != null">
+        maker = #{record.maker,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtCreate != null">
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.department != null">
+        department = #{record.department,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsId != null">
+        goods_id = #{record.goodsId,jdbcType=CHAR},
+      </if>
+      <if test="record.goodsBrand != null">
+        goods_brand = #{record.goodsBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsImei != null">
+        goods_imei = #{record.goodsImei,jdbcType=CHAR},
+      </if>
+      <if test="record.goodsType != null">
+        goods_type = #{record.goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsColor != null">
+        goods_color = #{record.goodsColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statusReturn != null">
+        status_return = #{record.statusReturn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inboundId != null">
+        inbound_id = #{record.inboundId,jdbcType=CHAR},
+      </if>
+      <if test="record.configuration != null">
+        configuration = #{record.configuration,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reason != null">
+        reason = #{record.reason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appearance != null">
+        appearance = #{record.appearance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditor != null">
+        auditor = #{record.auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opinionAudit != null">
+        opinion_audit = #{record.opinionAudit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditStatus != null">
+        audit_status = #{record.auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtAudit != null">
+        gmt_audit = #{record.gmtAudit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.docStatus != null">
+        doc_status = #{record.docStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update a_return_storage
+    set id = #{record.id,jdbcType=CHAR},
+      ex_id = #{record.exId,jdbcType=CHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      maker = #{record.maker,jdbcType=VARCHAR},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      department = #{record.department,jdbcType=VARCHAR},
+      goods_id = #{record.goodsId,jdbcType=CHAR},
+      goods_brand = #{record.goodsBrand,jdbcType=VARCHAR},
+      goods_imei = #{record.goodsImei,jdbcType=CHAR},
+      goods_type = #{record.goodsType,jdbcType=VARCHAR},
+      goods_color = #{record.goodsColor,jdbcType=VARCHAR},
+      status_return = #{record.statusReturn,jdbcType=VARCHAR},
+      inbound_id = #{record.inboundId,jdbcType=CHAR},
+      configuration = #{record.configuration,jdbcType=VARCHAR},
+      reason = #{record.reason,jdbcType=VARCHAR},
+      appearance = #{record.appearance,jdbcType=VARCHAR},
+      auditor = #{record.auditor,jdbcType=VARCHAR},
+      opinion_audit = #{record.opinionAudit,jdbcType=VARCHAR},
+      audit_status = #{record.auditStatus,jdbcType=VARCHAR},
+      gmt_audit = #{record.gmtAudit,jdbcType=TIMESTAMP},
+      doc_status = #{record.docStatus,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.erp.domain.aftermodule.AReturnStorage">
+    update a_return_storage
+    <set>
+      <if test="exId != null">
+        ex_id = #{exId,jdbcType=CHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="maker != null">
+        maker = #{maker,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="department != null">
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=CHAR},
+      </if>
+      <if test="goodsBrand != null">
+        goods_brand = #{goodsBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImei != null">
+        goods_imei = #{goodsImei,jdbcType=CHAR},
+      </if>
+      <if test="goodsType != null">
+        goods_type = #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsColor != null">
+        goods_color = #{goodsColor,jdbcType=VARCHAR},
+      </if>
+      <if test="statusReturn != null">
+        status_return = #{statusReturn,jdbcType=VARCHAR},
+      </if>
+      <if test="inboundId != null">
+        inbound_id = #{inboundId,jdbcType=CHAR},
+      </if>
+      <if test="configuration != null">
+        configuration = #{configuration,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="appearance != null">
+        appearance = #{appearance,jdbcType=VARCHAR},
+      </if>
+      <if test="auditor != null">
+        auditor = #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="opinionAudit != null">
+        opinion_audit = #{opinionAudit,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null">
+        audit_status = #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtAudit != null">
+        gmt_audit = #{gmtAudit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="docStatus != null">
+        doc_status = #{docStatus,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.erp.domain.aftermodule.AReturnStorage">
+    update a_return_storage
+    set ex_id = #{exId,jdbcType=CHAR},
+      type = #{type,jdbcType=VARCHAR},
+      maker = #{maker,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      department = #{department,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=CHAR},
+      goods_brand = #{goodsBrand,jdbcType=VARCHAR},
+      goods_imei = #{goodsImei,jdbcType=CHAR},
+      goods_type = #{goodsType,jdbcType=VARCHAR},
+      goods_color = #{goodsColor,jdbcType=VARCHAR},
+      status_return = #{statusReturn,jdbcType=VARCHAR},
+      inbound_id = #{inboundId,jdbcType=CHAR},
+      configuration = #{configuration,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      appearance = #{appearance,jdbcType=VARCHAR},
+      auditor = #{auditor,jdbcType=VARCHAR},
+      opinion_audit = #{opinionAudit,jdbcType=VARCHAR},
+      audit_status = #{auditStatus,jdbcType=VARCHAR},
+      gmt_audit = #{gmtAudit,jdbcType=TIMESTAMP},
+      doc_status = #{docStatus,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

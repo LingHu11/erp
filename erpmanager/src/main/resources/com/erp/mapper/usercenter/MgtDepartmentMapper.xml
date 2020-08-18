@@ -11,4 +11,9 @@
     <select id="getList" resultMap="baseResultMap">
         SELECT md.id,md.departname FROM mgt_department md WHERE is_deleted = 0
     </select>
+
+    <select id="depById" parameterType="java.lang.String" resultMap="java.lang.String">
+        SELECT md.departname FROM mgt_department md WHERE id = #{id}
+    </select>
+
 </mapper>

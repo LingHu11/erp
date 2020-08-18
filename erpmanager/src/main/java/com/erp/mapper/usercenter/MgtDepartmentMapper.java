@@ -16,4 +16,6 @@ import java.util.List;
 public interface MgtDepartmentMapper {
     // 查询所有的部门
     List<MgtDepartment> getList();
+
+    String depById(String id);
 }

@@ -37,4 +37,5 @@ public interface MgtPermissionMapper {
 //
 //    List<MgtPermission> loadMenuTwo(@Param("rid") String rid ,@Param("path") String path);
 
+
 }
