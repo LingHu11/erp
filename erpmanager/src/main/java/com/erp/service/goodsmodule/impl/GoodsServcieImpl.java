@@ -69,4 +69,16 @@ class GoodsServcieImpl implements GoodsServcie {
         return i;
     }
 
+
+    /**
+     * @param id 商品ID
+     * @param number 减少的数量
+     */
+    public void reduceById(Integer id,Integer number){
+        Goods goods = new Goods();
+        goods.setId(id);
+        String numberGoods = Integer.toString(Integer.parseInt(goods.getNumber()) - number);
+        goods.setNumber(numberGoods);
+        goodsMapper.reduceById(goods);
+    }
 }
