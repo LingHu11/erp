@@ -92,7 +92,7 @@
                                     <button type="button" class="btn btn-default" title="添加赠品转商品请求" id="addApproval"><i
                                             class="fa fa-file-o"></i>添加商品转赠品请求
                                     </button>
-                                    <button type="button" class="btn btn-default" title="添加渠道分类" id="exportExcel"><i
+                                    <button type="button" class="btn btn-default" title="导出所有申请记录" id="exportExcel"><i
                                             class="fa fa-file-o"></i>导出所有申请记录
                                     </button>
                                 </div>
